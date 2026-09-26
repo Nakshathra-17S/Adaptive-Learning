@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Your Learning Space | LearnIQ</title>
+
+    <link rel="stylesheet" href="../style.css">
+
+</head>
+
+
+<body>
+
+<button class="back-btn" onclick="history.back()">← Back</button>
+
+<main class="learn-page">
+
+
+    <!-- HEADER -->
+
+    <div class="page-header">
+
+        <div class="logo">
+
+            <span class="logo-icon">✦</span>
+
+            <span>LearnIQ</span>
+
+        </div>
+
+
+        <div class="step-indicator">
+
+            Learning Space
+
+        </div>
+
+    </div>
+
+
+
+    <!-- WELCOME -->
+
+    <section class="learn-header">
+
+        <div>
+
+            <div class="welcome-badge">
+
+                ✨ Personalized for you
+
+            </div>
+
+
+            <h1>
+
+                Hi, <span id="studentName">Learner</span> 👋
+
+            </h1>
+
+
+            <p class="section-description">
+
+                Your learning experience has been adapted
+                to your level and preferred learning style.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- PERSONALIZATION SUMMARY -->
+
+    <section class="personalization-card">
+
+
+        <div class="personalization-item">
+
+            <span class="personalization-icon">
+
+                🧠
+
+            </span>
+
+            <div>
+
+                <small>Learning style</small>
+
+                <strong id="learningStyle">
+
+                    Visualizer
+
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="personalization-item">
+
+            <span class="personalization-icon">
+
+                📊
+
+            </span>
+
+            <div>
+
+                <small>Your level</small>
+
+                <strong id="learningLevel">
+
+                    Beginner
+
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="personalization-item">
+
+            <span class="personalization-icon">
+
+                📐
+
+            </span>
+
+            <div>
+
+                <small>Current topic</small>
+
+                <strong id="selectedTopic">
+
+                    Trigonometry
+
+                </strong>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- LEARNING FORMAT -->
+
+    <section class="learning-section">
+
+
+        <div class="section-heading">
+
+            <div>
+
+                <p class="eyebrow">
+
+                    CHOOSE YOUR FORMAT
+
+                </p>
+
+
+                <h2>
+
+                    How would you like to learn?
+
+                </h2>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="format-grid">
+
+
+            <!-- VIDEO -->
+
+            <div
+                class="format-card"
+                onclick="selectFormat(this, 'Video')"
+            >
+
+                <div class="format-icon">
+
+                    ▶️
+
+                </div>
+
+                <h3>
+
+                    Video
+
+                </h3>
+
+                <p>
+
+                    Learn through visual explanations
+
+                </p>
+
+                <span class="format-check">
+
+                    ✓
+
+                </span>
+
+            </div>
+
+
+
+            <!-- PDF -->
+
+            <div
+                class="format-card"
+                onclick="selectFormat(this, 'PDF')"
+            >
+
+                <div class="format-icon">
+
+                    📄
+
+                </div>
+
+                <h3>
+
+                    PDF Notes
+
+                </h3>
+
+                <p>
+
+                    Read concise study material
+
+                </p>
+
+                <span class="format-check">
+
+                    ✓
+
+                </span>
+
+            </div>
+
+
+
+            <!-- MIND MAP -->
+
+            <div
+                class="format-card"
+                onclick="selectFormat(this, 'Mind Map')"
+            >
+
+                <div class="format-icon">
+
+                    🧠
+
+                </div>
+
+                <h3>
+
+                    Mind Map
+
+                </h3>
+
+                <p>
+
+                    Connect concepts visually
+
+                </p>
+
+                <span class="format-check">
+
+                    ✓
+
+                </span>
+
+            </div>
+
+
+
+            <!-- VISUAL GUIDE -->
+
+            <div
+                class="format-card"
+                onclick="selectFormat(this, 'Pictorial')"
+            >
+
+                <div class="format-icon">
+
+                    🖼️
+
+                </div>
+
+                <h3>
+
+                    Visual Guide
+
+                </h3>
+
+                <p>
+
+                    Learn using diagrams & examples
+
+                </p>
+
+                <span class="format-check">
+
+                    ✓
+
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- OPTIONS -->
+
+    <section class="learning-options">
+
+
+        <div class="option-box">
+
+            <label>
+
+                🎬 Video duration
+
+            </label>
+
+
+            <select id="duration">
+
+                <option value="5">
+
+                    5 minutes
+
+                </option>
+
+                <option value="10">
+
+                    10 minutes
+
+                </option>
+
+                <option value="15">
+
+                    15 minutes
+
+                </option>
+
+                <option value="20">
+
+                    20 minutes
+
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <div class="option-box">
+
+            <label>
+
+                🌐 Language
+
+            </label>
+
+
+            <select id="language">
+
+                <option value="English">
+
+                    English
+
+                </option>
+
+                <option value="Kannada">
+
+                    Kannada
+
+                </option>
+
+            </select>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ADAPTIVE CONTENT -->
+
+    <section class="adaptive-card">
+
+
+        <div class="adaptive-icon">
+
+            ✨
+
+        </div>
+
+
+        <div>
+
+            <p class="eyebrow">
+
+                YOUR PERSONALIZED PATH
+
+            </p>
+
+
+            <h2 id="adaptiveTitle">
+
+                Building your foundation
+
+            </h2>
+
+
+            <p id="adaptiveDescription">
+
+                We'll start with the basics of trigonometry
+                and gradually build your understanding.
+
+            </p>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- START BUTTON -->
+
+    <button
+        class="primary-btn learning-button"
+        onclick="startLearningSession()"
+    >
+
+        Start Learning →
+
+    </button>
+
+
+</main>
+
+
+
+<script>
+
+/* =========================
+   GET STUDENT DATA
+========================= */
+
+const studentName =
+    localStorage.getItem("studentName") || "Learner";
+
+const learningStyle =
+    localStorage.getItem("learningStyle") || "Visualizer";
+
+const learningLevel =
+    localStorage.getItem("learningLevel") || "Beginner";
+
+const selectedTopic =
+    localStorage.getItem("selectedTopic") || "Trigonometry";
+
+
+document.getElementById("studentName").textContent =
+    studentName;
+
+document.getElementById("learningStyle").textContent =
+    learningStyle;
+
+document.getElementById("learningLevel").textContent =
+    learningLevel;
+
+document.getElementById("selectedTopic").textContent =
+    selectedTopic;
+
+
+/* =========================
+   PERSONALIZED DESCRIPTION
+========================= */
+
+const descriptions = {
+
+    Beginner: {
+
+        title: "Building your foundation",
+
+        text:
+            "We'll start with the basics of trigonometry and gradually build your understanding."
+
+    },
+
+    Intermediate: {
+
+        title: "Strengthening your skills",
+
+        text:
+            "We'll quickly revise the fundamentals and move into practical trigonometry problems."
+
+    },
+
+    Advanced: {
+
+        title: "Challenge yourself",
+
+        text:
+            "We'll focus on advanced applications, problem solving and deeper mathematical thinking."
+
+    }
+
+};
+
+
+const currentDescription =
+    descriptions[learningLevel] ||
+    descriptions.Beginner;
+
+
+document.getElementById("adaptiveTitle").textContent =
+    currentDescription.title;
+
+document.getElementById("adaptiveDescription").textContent =
+    currentDescription.text;
+
+
+/* =========================
+   FORMAT SELECTION
+========================= */
+
+let selectedFormat =
+    localStorage.getItem("learningFormat") || "Video";
+
+
+function selectFormat(card, format) {
+
+    /* Remove selection from all cards */
+
+    document
+        .querySelectorAll(".format-card")
+        .forEach(function(item) {
+
+            item.classList.remove("selected");
+
+        });
+
+
+    /* Add selection to clicked card */
+
+    card.classList.add("selected");
+
+
+    /* Save selected format */
+
+    selectedFormat = format;
+
+    localStorage.setItem(
+        "learningFormat",
+        format
+    );
+
+}
+
+
+/* =========================
+   SHOW SAVED FORMAT
+========================= */
+
+document
+    .querySelectorAll(".format-card")
+    .forEach(function(card) {
+
+        const cardAction =
+            card.getAttribute("onclick");
+
+        if (
+            cardAction &&
+            cardAction.includes(
+                "'" + selectedFormat + "'"
+            )
+        ) {
+
+            card.classList.add("selected");
+
+        }
+
+    });
+
+
+/* =========================
+   START LEARNING
+========================= */
+
+function startLearningSession() {
+
+    const duration =
+        document.getElementById("duration").value;
+
+    const language =
+        document.getElementById("language").value;
+
+
+    /* Save preferences */
+
+    localStorage.setItem(
+        "videoDuration",
+        duration
+    );
+
+    localStorage.setItem(
+        "language",
+        language
+    );
+
+    localStorage.setItem(
+        "learningFormat",
+        selectedFormat
+    );
+
+
+    /* =========================
+       VIDEO
+    ========================= */
+
+    if (selectedFormat === "Video") {
+
+        window.location.href =
+            "animated-lesson.html";
+
+    }
+
+
+    /* =========================
+       MIND MAP
+    ========================= */
+
+    else if (selectedFormat === "Mind Map") {
+
+        window.location.href =
+            "mindmap.html";
+
+    }
+
+
+    /* =========================
+       PDF
+    ========================= */
+
+    else if (selectedFormat === "PDF") {
+
+    window.location.href =
+        "pdf-viewer.html";
+
+}
+
+    /* =========================
+       VISUAL GUIDE
+    ========================= */
+
+    else if (selectedFormat === "Pictorial") {
+
+        window.location.href =
+            "visual-guide.html";
+
+    }
+
+}
+
+</script>
+
+
+</body>
+
+</html>

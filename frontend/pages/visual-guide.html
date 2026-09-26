@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Visual Guide | LearnIQ</title>
+
+    <link rel="stylesheet" href="../style.css">
+
+    <style>
+
+        body {
+            background: #f4f7ff;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #18213d;
+        }
+
+        .visual-page {
+            max-width: 1100px;
+            margin: auto;
+            padding: 30px 20px 50px;
+        }
+
+        /* BACK BUTTON */
+
+        .back-btn {
+            border: none;
+            background: white;
+            padding: 10px 18px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: 0.2s;
+        }
+
+        .back-btn:hover {
+            transform: translateX(-3px);
+        }
+
+        /* HERO */
+
+        .hero {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: #243b7a;
+        }
+
+        .hero p {
+            color: #68728a;
+            font-size: 17px;
+        }
+
+        .student-info {
+            display: inline-block;
+            background: #e9edff;
+            padding: 9px 18px;
+            border-radius: 20px;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        /* VISUAL GRID */
+
+        .visual-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .visual-card {
+            background: white;
+            border-radius: 22px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(40, 60, 120, 0.09);
+        }
+
+        .visual-card h2 {
+            color: #243b7a;
+            margin-top: 0;
+        }
+
+        /* TRIANGLE */
+
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 120px solid transparent;
+            border-right: 120px solid transparent;
+            border-bottom: 150px solid #dce5ff;
+            margin: 25px auto;
+            position: relative;
+        }
+
+        .triangle-label {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* RATIOS */
+
+        .ratio-box {
+            display: flex;
+            justify-content: space-around;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .ratio {
+            flex: 1;
+            background: #f0f3ff;
+            border-radius: 15px;
+            padding: 18px 8px;
+            text-align: center;
+        }
+
+        .ratio strong {
+            display: block;
+            font-size: 22px;
+            color: #243b7a;
+            margin-bottom: 8px;
+        }
+
+        /* ANGLE */
+
+        .angle-circle {
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            border: 10px solid #dce5ff;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            font-weight: bold;
+            color: #243b7a;
+        }
+
+        /* APPLICATION */
+
+        .application {
+            grid-column: 1 / -1;
+        }
+
+        .application-box {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            background: #f7f8ff;
+            border-radius: 18px;
+            margin-top: 15px;
+        }
+
+        .application-item {
+            font-size: 42px;
+        }
+
+        .application-item p {
+            font-size: 14px;
+            color: #59647c;
+        }
+
+        /* BOTTOM NOTE */
+
+        .bottom-note {
+            margin-top: 30px;
+            text-align: center;
+            background: #e9edff;
+            padding: 20px;
+            border-radius: 18px;
+        }
+
+        /* NEXT BUTTON */
+
+        .bottom-controls {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 30px;
+            padding-bottom: 20px;
+        }
+
+        .next-btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 12px;
+            background: #243b7a;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 6px 18px rgba(40, 60, 120, 0.15);
+            transition: 0.2s;
+        }
+
+        .next-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(40, 60, 120, 0.2);
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            .visual-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .application {
+                grid-column: auto;
+            }
+
+            .application-box {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .ratio-box {
+                flex-direction: column;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .bottom-controls {
+                justify-content: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<main class="visual-page">
+
+    <!-- BACK BUTTON -->
+
+    <button class="back-btn" onclick="history.back()">
+        ← Back
+    </button>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="welcome-badge">
+            ✨ Visual Learning
+        </div>
+
+        <h1>Trigonometry Visual Guide</h1>
+
+        <p>
+            Understand the concept through diagrams,
+            relationships and visual examples.
+        </p>
+
+        <div class="student-info">
+            <span id="studentName">Learner</span>
+            •
+            <span id="learningStyle">Visualizer</span>
+            •
+            <span id="learningLevel">Beginner</span>
+        </div>
+
+    </section>
+
+
+    <!-- VISUAL CONTENT -->
+
+    <section class="visual-grid">
+
+
+        <!-- 1. TRIANGLE -->
+
+        <div class="visual-card">
+
+            <h2>📐 1. Right Triangle</h2>
+
+            <p>
+                A right triangle contains one 90° angle.
+                The three important sides are:
+            </p>
+
+            <div class="triangle"></div>
+
+            <div class="triangle-label">
+                Hypotenuse • Opposite • Adjacent
+            </div>
+
+        </div>
+
+
+        <!-- 2. ANGLE -->
+
+        <div class="visual-card">
+
+            <h2>⭕ 2. The Angle</h2>
+
+            <p>
+                The angle you are studying is represented
+                by θ (theta).
+            </p>
+
+            <div class="angle-circle">
+                θ
+            </div>
+
+            <p>
+                Always identify the angle first.
+                Then identify the sides relative to it.
+            </p>
+
+        </div>
+
+
+        <!-- 3. RATIOS -->
+
+        <div class="visual-card">
+
+            <h2>🔗 3. Three Ratios</h2>
+
+            <div class="ratio-box">
+
+                <div class="ratio">
+                    <strong>sin</strong>
+                    Opposite<br>
+                    ───────<br>
+                    Hypotenuse
+                </div>
+
+                <div class="ratio">
+                    <strong>cos</strong>
+                    Adjacent<br>
+                    ───────<br>
+                    Hypotenuse
+                </div>
+
+                <div class="ratio">
+                    <strong>tan</strong>
+                    Opposite<br>
+                    ───────<br>
+                    Adjacent
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- 4. MEMORY -->
+
+        <div class="visual-card">
+
+            <h2>🧠 4. Easy Memory Trick</h2>
+
+            <div class="ratio-box">
+
+                <div class="ratio">
+                    <strong>SOH</strong>
+                    Sin<br>
+                    Opposite<br>
+                    Hypotenuse
+                </div>
+
+                <div class="ratio">
+                    <strong>CAH</strong>
+                    Cos<br>
+                    Adjacent<br>
+                    Hypotenuse
+                </div>
+
+                <div class="ratio">
+                    <strong>TOA</strong>
+                    Tan<br>
+                    Opposite<br>
+                    Adjacent
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- 5. REAL WORLD -->
+
+        <div class="visual-card application">
+
+            <h2>🏗️ 5. Where is Trigonometry Used?</h2>
+
+            <p>
+                Trigonometry helps us calculate things that
+                are difficult to measure directly.
+            </p>
+
+            <div class="application-box">
+
+                <div class="application-item">
+                    🏢
+                    <p>Building height</p>
+                </div>
+
+                <div class="application-item">
+                    🤖
+                    <p>Robotics</p>
+                </div>
+
+                <div class="application-item">
+                    🛰️
+                    <p>Navigation</p>
+                </div>
+
+                <div class="application-item">
+                    🏗️
+                    <p>Engineering</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- LEARNIQ TIP -->
+
+    <div class="bottom-note">
+
+        <strong>✨ LearnIQ tip</strong>
+
+        <p>
+            First understand the picture.
+            Then identify the relationship.
+            Finally solve the problem.
+        </p>
+
+    </div>
+
+
+    <!-- NEXT BUTTON -->
+
+    <div class="bottom-controls">
+
+        <button class="next-btn" onclick="goNext()">
+            Next →
+        </button>
+
+    </div>
+
+</main>
+
+
+<script>
+
+    const studentName =
+        localStorage.getItem("studentName") || "Learner";
+
+    const learningStyle =
+        localStorage.getItem("learningStyle") || "Visualizer";
+
+    const learningLevel =
+        localStorage.getItem("learningLevel") || "Beginner";
+
+
+    document.getElementById("studentName").textContent =
+        studentName;
+
+    document.getElementById("learningStyle").textContent =
+        learningStyle;
+
+    document.getElementById("learningLevel").textContent =
+        learningLevel;
+
+
+    function goNext() {
+
+        window.location.href = "tutor.html";
+
+    }
+
+</script>
+
+</body>
+
+</html>

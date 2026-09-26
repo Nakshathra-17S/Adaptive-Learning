@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Progress | LearnIQ</title>
+
+    <link rel="stylesheet"
+          href="../style.css">
+
+</head>
+
+
+<body>
+
+<main class="progress-page">
+
+    <!-- HEADER -->
+
+    <div class="page-header">
+
+        <div class="logo">
+
+            <span class="logo-icon">
+                ✦
+            </span>
+
+            <span>
+                LearnIQ
+            </span>
+
+        </div>
+
+
+        <div class="step-indicator">
+
+            My Progress
+
+        </div>
+
+    </div>
+
+
+
+    <!-- INTRO -->
+
+    <section class="progress-intro">
+
+        <div class="welcome-badge">
+
+            📊 Your learning journey
+
+        </div>
+
+
+        <h1>
+
+            Look how far you've
+            <span>come.</span>
+
+        </h1>
+
+
+        <p class="section-description">
+
+            Your progress is based on your
+            learning activity and quiz performance.
+
+        </p>
+
+    </section>
+
+
+
+    <!-- STUDENT SUMMARY -->
+
+    <section class="student-summary">
+
+        <div>
+
+            <p class="eyebrow">
+                STUDENT
+            </p>
+
+            <h2 id="studentName">
+                Student
+            </h2>
+
+        </div>
+
+
+        <div class="level-summary">
+
+            <span>
+                CURRENT LEVEL
+            </span>
+
+            <strong id="studentLevel">
+                Beginner
+            </strong>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- MAIN STATS -->
+
+    <section class="progress-stats">
+
+
+        <!-- DIAGNOSTIC -->
+
+        <div class="progress-stat-card">
+
+            <div class="stat-icon">
+                📝
+            </div>
+
+            <p>
+                Diagnostic Score
+            </p>
+
+            <h2>
+
+                <span id="diagnosticScore">
+                    0
+                </span>%
+
+            </h2>
+
+        </div>
+
+
+
+        <!-- FINAL -->
+
+        <div class="progress-stat-card">
+
+            <div class="stat-icon">
+                🎯
+            </div>
+
+            <p>
+                Final Quiz Score
+            </p>
+
+            <h2>
+
+                <span id="finalScore">
+                    0
+                </span>/5
+
+            </h2>
+
+        </div>
+
+
+
+        <!-- IMPROVEMENT -->
+
+        <div class="progress-stat-card">
+
+            <div class="stat-icon">
+                📈
+            </div>
+
+            <p>
+                Improvement
+            </p>
+
+            <h2>
+
+                <span id="improvement">
+                    0
+                </span>%
+
+            </h2>
+
+        </div>
+
+
+
+        <!-- POINTS -->
+
+        <div class="progress-stat-card">
+
+            <div class="stat-icon">
+                ⭐
+            </div>
+
+            <p>
+                Points Earned
+            </p>
+
+            <h2>
+
+                <span id="points">
+                    0
+                </span>
+
+            </h2>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- PROGRESS COMPARISON -->
+
+    <section class="comparison-card">
+
+        <div class="comparison-header">
+
+            <div>
+
+                <p class="eyebrow">
+                    PERFORMANCE
+                </p>
+
+                <h2>
+                    Your learning progress
+                </h2>
+
+            </div>
+
+
+            <div class="topic-badge">
+
+                📐
+                <span id="topic">
+                    Trigonometry
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- DIAGNOSTIC -->
+
+        <div class="progress-row">
+
+            <div class="progress-row-label">
+
+                <span>
+                    Before learning
+                </span>
+
+                <strong id="beforePercentage">
+                    0%
+                </strong>
+
+            </div>
+
+
+            <div class="large-progress">
+
+                <div
+                    id="beforeBar"
+                    class="before-bar">
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- FINAL -->
+
+        <div class="progress-row">
+
+            <div class="progress-row-label">
+
+                <span>
+                    After learning
+                </span>
+
+                <strong id="afterPercentage">
+                    0%
+                </strong>
+
+            </div>
+
+
+            <div class="large-progress">
+
+                <div
+                    id="afterBar"
+                    class="after-bar">
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- LEARNING DETAILS -->
+
+    <section class="learning-details">
+
+
+        <div class="detail-card">
+
+            <span class="detail-icon">
+                🧠
+            </span>
+
+            <div>
+
+                <p>
+                    Learning Style
+                </p>
+
+                <strong id="learningStyle">
+                    Explorer
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="detail-card">
+
+            <span class="detail-icon">
+                ⏱️
+            </span>
+
+            <div>
+
+                <p>
+                    Learning Time
+                </p>
+
+                <strong id="learningTime">
+                    10 minutes
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="detail-card">
+
+            <span class="detail-icon">
+                🌐
+            </span>
+
+            <div>
+
+                <p>
+                    Language
+                </p>
+
+                <strong id="language">
+                    English
+                </strong>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- MOTIVATION -->
+
+    <section class="motivation-card">
+
+        <div class="motivation-star">
+            ⭐
+        </div>
+
+
+        <div>
+
+            <h3 id="motivationTitle">
+
+                Keep going!
+
+            </h3>
+
+
+            <p id="motivationText">
+
+                Every question you answer
+                helps you learn better.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- FEEDBACK BUTTON -->
+
+    <button
+        class="primary-btn progress-next-button"
+        onclick="goToFeedback()">
+
+        Give Feedback →
+
+    </button>
+
+
+</main>
+
+
+
+<script>
+
+
+/* =========================
+   GET STORED DATA
+========================= */
+
+
+const studentName =
+    localStorage.getItem(
+        "studentName"
+    ) || "Student";
+
+
+const level =
+    localStorage.getItem(
+        "learningLevel"
+    ) || "Beginner";
+
+
+const diagnostic =
+    Number(
+        localStorage.getItem(
+            "diagnosticScore"
+        )
+    ) || 0;
+
+
+const finalScore =
+    Number(
+        localStorage.getItem(
+            "finalScore"
+        )
+    ) || 0;
+
+
+const points =
+    Number(
+        localStorage.getItem(
+            "finalPoints"
+        )
+    ) || 0;
+
+
+const learningStyle =
+    localStorage.getItem(
+        "learningStyle"
+    ) || "Explorer";
+
+
+const language =
+    localStorage.getItem(
+        "learningLanguage"
+    ) || "English";
+
+
+const duration =
+    localStorage.getItem(
+        "learningDuration"
+    ) || "10";
+
+
+const topic =
+    localStorage.getItem(
+        "selectedTopic"
+    ) || "Trigonometry";
+
+
+
+/* =========================
+   DISPLAY DATA
+========================= */
+
+
+document.getElementById(
+    "studentName"
+).textContent =
+    studentName;
+
+
+document.getElementById(
+    "studentLevel"
+).textContent =
+    level;
+
+
+document.getElementById(
+    "diagnosticScore"
+).textContent =
+    diagnostic;
+
+
+document.getElementById(
+    "finalScore"
+).textContent =
+    finalScore;
+
+
+document.getElementById(
+    "points"
+).textContent =
+    points;
+
+
+document.getElementById(
+    "topic"
+).textContent =
+    topic;
+
+
+document.getElementById(
+    "learningStyle"
+).textContent =
+    learningStyle;
+
+
+document.getElementById(
+    "language"
+).textContent =
+    language;
+
+
+document.getElementById(
+    "learningTime"
+).textContent =
+    duration + " minutes";
+
+
+
+/* =========================
+   CONVERT FINAL SCORE
+   TO PERCENTAGE
+========================= */
+
+
+const finalPercentage =
+    finalScore * 20;
+
+
+document.getElementById(
+    "beforePercentage"
+).textContent =
+    diagnostic + "%";
+
+
+document.getElementById(
+    "afterPercentage"
+).textContent =
+    finalPercentage + "%";
+
+
+document.getElementById(
+    "beforeBar"
+).style.width =
+    diagnostic + "%";
+
+
+document.getElementById(
+    "afterBar"
+).style.width =
+    finalPercentage + "%";
+
+
+
+/* =========================
+   IMPROVEMENT
+========================= */
+
+
+let improvement =
+    finalPercentage - diagnostic;
+
+
+if (improvement < 0) {
+
+    improvement = 0;
+
+}
+
+
+document.getElementById(
+    "improvement"
+).textContent =
+    improvement;
+
+
+
+/* =========================
+   MOTIVATION
+========================= */
+
+
+if (finalScore === 5) {
+
+    document.getElementById(
+        "motivationTitle"
+    ).textContent =
+        "Amazing work! 🌟";
+
+
+    document.getElementById(
+        "motivationText"
+    ).textContent =
+        "You have built a strong understanding of this topic.";
+
+}
+
+else if (finalScore >= 3) {
+
+    document.getElementById(
+        "motivationTitle"
+    ).textContent =
+        "You're improving! 🚀";
+
+
+    document.getElementById(
+        "motivationText"
+    ).textContent =
+        "Keep practising and you'll become even stronger.";
+
+}
+
+else {
+
+    document.getElementById(
+        "motivationTitle"
+    ).textContent =
+        "Keep learning! 💪";
+
+
+    document.getElementById(
+        "motivationText"
+    ).textContent =
+        "Revisit the concepts and try the quiz again.";
+
+}
+
+
+
+/* =========================
+   FEEDBACK
+========================= */
+
+
+function goToFeedback() {
+
+    window.location.href =
+        "feedback.html";
+
+}
+
+</script>
+
+
+</body>
+
+</html>

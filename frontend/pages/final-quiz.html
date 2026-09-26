@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Quick Quiz | LearnIQ</title>
+
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<main class="final-quiz-page">
+
+    <!-- HEADER -->
+    <div class="page-header">
+
+        <div class="logo">
+            <span class="logo-icon">✦</span>
+            <span>LearnIQ</span>
+        </div>
+
+        <div class="step-indicator">
+            Quick Quiz
+        </div>
+
+    </div>
+
+
+    <!-- INTRO -->
+    <section class="quiz-intro">
+
+        <div class="welcome-badge">
+            🎯 Check your learning
+        </div>
+
+        <h1>
+            Let's see what you <span>remember.</span>
+        </h1>
+
+        <p class="section-description">
+            Answer these questions based on what you just learned.
+            Don't worry — this is about progress, not perfection.
+        </p>
+
+    </section>
+
+
+    <!-- QUIZ -->
+    <section class="final-quiz-card">
+
+        <div class="quiz-top">
+
+            <div>
+                <p class="eyebrow">
+                    TRIGONOMETRY
+                </p>
+
+                <h2>
+                    Quick Learning Check
+                </h2>
+            </div>
+
+            <div class="score-preview">
+                <span id="questionNumber">1</span>/5
+            </div>
+
+        </div>
+
+
+        <!-- PROGRESS BAR -->
+
+        <div class="final-progress">
+            <div
+                id="finalProgressFill"
+                class="final-progress-fill">
+            </div>
+        </div>
+
+
+        <!-- QUESTION -->
+
+        <div id="questionContainer">
+
+            <h3 id="questionText">
+                What is the value of sin 30°?
+            </h3>
+
+
+            <div
+                id="optionsContainer"
+                class="final-options">
+            </div>
+
+        </div>
+
+
+        <!-- NEXT BUTTON -->
+
+        <button
+            id="nextButton"
+            class="primary-btn final-next-button"
+            onclick="nextQuestion()">
+
+            Next Question →
+
+        </button>
+
+    </section>
+
+
+    <!-- RESULT -->
+
+    <section
+        id="resultSection"
+        class="result-section"
+        style="display:none;">
+
+        <div class="result-card">
+
+            <div class="result-icon">
+                ⭐
+            </div>
+
+            <h2>
+                Great work!
+            </h2>
+
+            <p>
+                You completed your learning check.
+            </p>
+
+
+            <div class="result-score">
+
+                <span id="finalScore">
+                    0
+                </span>
+
+                <small>
+                    / 5
+                </small>
+
+            </div>
+
+
+            <div
+                id="resultMessage"
+                class="result-message">
+
+            </div>
+
+
+            <div class="points-box">
+
+                ⭐
+
+                <span>
+                    <strong id="pointsEarned">
+                        0
+                    </strong>
+
+                    points earned
+                </span>
+
+            </div>
+
+
+            <button
+                class="primary-btn"
+                onclick="goToProgress()">
+
+                View My Progress →
+
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script>
+
+const questions = [
+
+    {
+        question: "What is the value of sin 30°?",
+
+        options: [
+            "1",
+            "1/2",
+            "√3/2",
+            "0"
+        ],
+
+        answer: 1
+    },
+
+
+    {
+        question: "What is the value of cos 60°?",
+
+        options: [
+            "1/2",
+            "1",
+            "√3/2",
+            "0"
+        ],
+
+        answer: 0
+    },
+
+
+    {
+        question: "What is tan 45°?",
+
+        options: [
+            "0",
+            "√3",
+            "1",
+            "1/2"
+        ],
+
+        answer: 2
+    },
+
+
+    {
+        question: "Which identity is correct?",
+
+        options: [
+            "sin²θ + cos²θ = 1",
+            "sin²θ - cos²θ = 1",
+            "sinθ + cosθ = 1",
+            "sinθ × cosθ = 1"
+        ],
+
+        answer: 0
+    },
+
+
+    {
+        question: "What is sin 90°?",
+
+        options: [
+            "0",
+            "1/2",
+            "√3/2",
+            "1"
+        ],
+
+        answer: 3
+    }
+
+];
+
+
+let currentQuestion = 0;
+
+let score = 0;
+
+let selectedAnswer = null;
+
+
+/* =========================
+   LOAD QUESTION
+========================= */
+
+function loadQuestion() {
+
+    const question =
+        questions[currentQuestion];
+
+
+    document.getElementById(
+        "questionNumber"
+    ).textContent =
+        currentQuestion + 1;
+
+
+    document.getElementById(
+        "questionText"
+    ).textContent =
+        question.question;
+
+
+    const optionsContainer =
+        document.getElementById(
+            "optionsContainer"
+        );
+
+
+    optionsContainer.innerHTML = "";
+
+
+    question.options.forEach(
+        function(option, index) {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.className =
+                "final-option";
+
+
+            button.textContent =
+                option;
+
+
+            button.onclick =
+                function() {
+
+                    selectAnswer(
+                        index,
+                        button
+                    );
+
+                };
+
+
+            optionsContainer.appendChild(
+                button
+            );
+
+        }
+    );
+
+
+    document.getElementById(
+        "finalProgressFill"
+    ).style.width =
+        ((currentQuestion + 1) / questions.length * 100)
+        + "%";
+
+
+    document.getElementById(
+        "nextButton"
+    ).textContent =
+        currentQuestion === questions.length - 1
+        ? "Finish Quiz ✓"
+        : "Next Question →";
+
+
+    selectedAnswer = null;
+
+}
+
+
+/* =========================
+   SELECT ANSWER
+========================= */
+
+function selectAnswer(index, button) {
+
+    selectedAnswer = index;
+
+
+    const allOptions =
+        document.querySelectorAll(
+            ".final-option"
+        );
+
+
+    allOptions.forEach(
+        function(option) {
+
+            option.classList.remove(
+                "selected"
+            );
+
+        }
+    );
+
+
+    button.classList.add(
+        "selected"
+    );
+
+}
+
+
+/* =========================
+   NEXT QUESTION
+========================= */
+
+function nextQuestion() {
+
+    if (selectedAnswer === null) {
+
+        alert(
+            "Please select an answer first."
+        );
+
+        return;
+
+    }
+
+
+    if (
+        selectedAnswer ===
+        questions[currentQuestion].answer
+    ) {
+
+        score++;
+
+    }
+
+
+    if (
+        currentQuestion <
+        questions.length - 1
+    ) {
+
+        currentQuestion++;
+
+        loadQuestion();
+
+    }
+
+    else {
+
+        showResult();
+
+    }
+
+}
+
+
+/* =========================
+   SHOW RESULT
+========================= */
+
+function showResult() {
+
+    document.getElementById(
+        "questionContainer"
+    ).style.display = "none";
+
+
+    document.querySelector(
+        ".quiz-top"
+    ).style.display = "none";
+
+
+    document.querySelector(
+        ".final-progress"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "nextButton"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "resultSection"
+    ).style.display = "block";
+
+
+    document.getElementById(
+        "finalScore"
+    ).textContent =
+        score;
+
+
+    /* =========================
+       POINTS
+    ========================= */
+
+    const points =
+        score * 20;
+
+
+    document.getElementById(
+        "pointsEarned"
+    ).textContent =
+        points;
+
+
+    /* =========================
+       RESULT MESSAGE
+    ========================= */
+
+    let message;
+
+
+    if (score === 5) {
+
+        message =
+            "Excellent! You have a strong understanding of Trigonometry. 🌟";
+
+    }
+
+    else if (score >= 3) {
+
+        message =
+            "Good job! You understood most of the concepts. Keep practising!";
+
+    }
+
+    else {
+
+        message =
+            "You're making progress! Revisiting the basics will help you improve.";
+
+    }
+
+
+    document.getElementById(
+        "resultMessage"
+    ).textContent =
+        message;
+
+
+    /* =========================
+       SAVE DATA
+    ========================= */
+
+    localStorage.setItem(
+        "finalScore",
+        score
+    );
+
+
+    localStorage.setItem(
+        "finalPoints",
+        points
+    );
+
+
+    localStorage.setItem(
+        "quizCompleted",
+        "true"
+    );
+
+}
+
+
+/* =========================
+   GO TO PROGRESS
+========================= */
+
+function goToProgress() {
+
+    window.location.href =
+        "progress.html";
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+loadQuestion();
+
+</script>
+
+</body>
+
+</html>

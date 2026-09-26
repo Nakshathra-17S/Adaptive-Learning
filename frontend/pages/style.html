@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>How do you learn? | LearnIQ</title>
+
+    <link rel="stylesheet" href="../style.css">
+
+</head>
+
+
+<body>
+
+    <main class="style-page">
+
+
+        <!-- HEADER -->
+
+        <div class="page-header">
+
+            <div class="logo">
+
+                <span class="logo-icon">✦</span>
+
+                <span>LearnIQ</span>
+
+            </div>
+
+
+            <div class="step-indicator">
+
+                2 of 5
+
+            </div>
+
+        </div>
+
+
+
+        <!-- CONTENT -->
+
+        <section class="style-content">
+
+
+            <div class="welcome-badge">
+
+                🧠 Personalize your experience
+
+            </div>
+
+
+            <h1>
+
+                How do you like<br>
+
+                <span>to learn?</span>
+
+            </h1>
+
+
+            <p class="section-description">
+
+                Choose the style that feels most natural to you.
+                We'll adapt your learning experience around it.
+
+            </p>
+
+
+
+            <!-- LEARNING STYLE CARDS -->
+
+            <div class="style-grid">
+
+
+                <div
+                    class="style-card"
+                    onclick="selectStyle(this, 'Explorer')"
+                >
+
+                    <div class="style-icon">
+
+                        🧩
+
+                    </div>
+
+
+                    <h2>
+
+                        Explorer
+
+                    </h2>
+
+
+                    <p>
+
+                        I like figuring things out
+
+                    </p>
+
+
+                    <span class="select-indicator">
+
+                        ○
+
+                    </span>
+
+                </div>
+
+
+
+                <div
+                    class="style-card"
+                    onclick="selectStyle(this, 'Visualizer')"
+                >
+
+                    <div class="style-icon">
+
+                        🎨
+
+                    </div>
+
+
+                    <h2>
+
+                        Visualizer
+
+                    </h2>
+
+
+                    <p>
+
+                        Show me pictures & examples
+
+                    </p>
+
+
+                    <span class="select-indicator">
+
+                        ○
+
+                    </span>
+
+                </div>
+
+
+
+                <div
+                    class="style-card"
+                    onclick="selectStyle(this, 'Challenger')"
+                >
+
+                    <div class="style-icon">
+
+                        🎮
+
+                    </div>
+
+
+                    <h2>
+
+                        Challenger
+
+                    </h2>
+
+
+                    <p>
+
+                        Give me problems
+
+                    </p>
+
+
+                    <span class="select-indicator">
+
+                        ○
+
+                    </span>
+
+                </div>
+
+
+
+                <div
+                    class="style-card"
+                    onclick="selectStyle(this, 'Storyteller')"
+                >
+
+                    <div class="style-icon">
+
+                        💡
+
+                    </div>
+
+
+                    <h2>
+
+                        Storyteller
+
+                    </h2>
+
+
+                    <p>
+
+                        Explain it like a story
+
+                    </p>
+
+
+                    <span class="select-indicator">
+
+                        ○
+
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- CONTINUE BUTTON -->
+
+            <button
+                id="continueStyle"
+                class="primary-btn style-button"
+                onclick="continueFromStyle()"
+                disabled
+            >
+
+                Continue →
+
+            </button>
+
+
+        </section>
+
+    </main>
+
+
+
+    <script>
+
+        let selectedStyle = "";
+
+
+        function selectStyle(card, style) {
+
+            document
+                .querySelectorAll(".style-card")
+                .forEach(function(item) {
+
+                    item.classList.remove("selected");
+
+                });
+
+
+            card.classList.add("selected");
+
+
+            selectedStyle = style;
+
+
+            localStorage.setItem(
+                "learningStyle",
+                style
+            );
+
+
+            document.getElementById(
+                "continueStyle"
+            ).disabled = false;
+
+        }
+
+
+
+        function continueFromStyle() {
+
+            if (selectedStyle === "") {
+
+                return;
+
+            }
+
+
+            window.location.href = "topic.html";
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

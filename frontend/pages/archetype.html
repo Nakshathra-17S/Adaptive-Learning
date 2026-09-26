@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>LearnIQ | Discover Your Learning Style</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7ff;
+            color: #18213d;
+        }
+
+        .page {
+            min-height: 100vh;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 35px;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 20px;
+            background: #eef0ff;
+            color: #6258e8;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin: 18px 0 10px;
+        }
+
+        .description {
+            color: #68708a;
+            line-height: 1.6;
+            font-size: 17px;
+        }
+
+        .progress {
+            margin: 25px 0;
+        }
+
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .progress-track {
+            height: 9px;
+            background: #e5e7f2;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 20%;
+            background: #6c63ff;
+            transition: 0.3s;
+        }
+
+        .question {
+            font-size: 23px;
+            font-weight: bold;
+            margin: 25px 0;
+            line-height: 1.4;
+        }
+
+        .option {
+            padding: 18px;
+            margin: 12px 0;
+            border: 2px solid #e4e6f0;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: 0.2s;
+            background: white;
+        }
+
+        .option:hover {
+            border-color: #6c63ff;
+            background: #f8f8ff;
+        }
+
+        .option.selected {
+            border-color: #6c63ff;
+            background: #eef0ff;
+        }
+
+        .option strong {
+            color: #6c63ff;
+            margin-right: 8px;
+        }
+
+        .next-btn {
+            margin-top: 25px;
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 14px;
+            background: #6c63ff;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .next-btn:disabled {
+            background: #c8c8d8;
+            cursor: not-allowed;
+        }
+
+        .result {
+            display: none;
+            text-align: center;
+        }
+
+        .result-icon {
+            font-size: 65px;
+        }
+
+        .result h2 {
+            font-size: 32px;
+            color: #6c63ff;
+        }
+
+        .result-description {
+            color: #68708a;
+            line-height: 1.7;
+            font-size: 17px;
+        }
+
+        .continue-btn {
+            margin-top: 20px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 13px;
+            background: #6c63ff;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="page">
+
+    <div class="container">
+
+        <div class="logo">
+            ✦ LearnIQ
+        </div>
+
+
+        <div class="card" id="quizCard">
+
+            <span class="badge">
+                ✨ Discover your learning style
+            </span>
+
+            <h1>
+                How do you learn best?
+            </h1>
+
+            <p class="description">
+
+                Answer these 5 quick questions.
+                There are no right or wrong answers.
+                Your answers help LearnIQ personalize
+                the way your lessons are taught.
+
+            </p>
+
+
+            <div class="progress">
+
+                <div class="progress-text">
+
+                    <span id="questionNumber">
+                        Question 1
+                    </span>
+
+                    <span>
+                        1 / 5
+                    </span>
+
+                </div>
+
+                <div class="progress-track">
+
+                    <div
+                        class="progress-bar"
+                        id="progressBar">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="question"
+                id="question">
+            </div>
+
+
+            <div id="options">
+            </div>
+
+
+            <button
+                class="next-btn"
+                id="nextButton"
+                disabled
+                onclick="nextQuestion()">
+
+                Next →
+
+            </button>
+
+        </div>
+
+
+        <!-- RESULT -->
+
+        <div
+            class="card result"
+            id="resultCard">
+
+            <div class="result-icon" id="resultIcon">
+                🎉
+            </div>
+
+            <h1>
+                Your learning style is
+            </h1>
+
+            <h2 id="resultTitle">
+                Visualizer
+            </h2>
+
+            <p
+                class="result-description"
+                id="resultDescription">
+            </p>
+
+            <button
+                class="continue-btn"
+                onclick="continueToTopic()">
+
+                Continue Learning →
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+
+/* ==========================
+   QUESTIONS
+========================== */
+
+const questions = [
+
+    {
+        question:
+            "You are learning something completely new. What would you prefer?",
+
+        options: [
+
+            {
+                text: "See a diagram, picture or animation",
+                type: "Visualizer"
+            },
+
+            {
+                text: "Hear a story about someone facing the problem",
+                type: "Storyteller"
+            },
+
+            {
+                text: "Try solving a problem yourself first",
+                type: "Challenger"
+            },
+
+            {
+                text: "See how the concept is used in a real situation",
+                type: "Explorer"
+            }
+
+        ]
+    },
+
+
+    {
+        question:
+            "You need to understand a triangle. Which sounds most interesting?",
+
+        options: [
+
+            {
+                text: "An animated triangle showing its sides and angles",
+                type: "Visualizer"
+            },
+
+            {
+                text: "A character trying to calculate the height of a building",
+                type: "Storyteller"
+            },
+
+            {
+                text: "A challenge asking you to find a missing side",
+                type: "Challenger"
+            },
+
+            {
+                text: "Using a triangle to measure a real building",
+                type: "Explorer"
+            }
+
+        ]
+    },
+
+
+    {
+        question:
+            "You don't understand a formula. What should LearnIQ do?",
+
+        options: [
+
+            {
+                text: "Draw and visually break down the formula",
+                type: "Visualizer"
+            },
+
+            {
+                text: "Explain why the formula became useful through a story",
+                type: "Storyteller"
+            },
+
+            {
+                text: "Let you attempt a problem first, then reveal the formula",
+                type: "Challenger"
+            },
+
+            {
+                text: "Show where the formula is used in real life",
+                type: "Explorer"
+            }
+
+        ]
+    },
+
+
+    {
+        question:
+            "Which type of lesson would keep you interested longest?",
+
+        options: [
+
+            {
+                text: "Interactive diagrams and mind maps",
+                type: "Visualizer"
+            },
+
+            {
+                text: "A story with characters and a goal",
+                type: "Storyteller"
+            },
+
+            {
+                text: "Problems that become progressively harder",
+                type: "Challenger"
+            },
+
+            {
+                text: "Real-world situations where you figure things out",
+                type: "Explorer"
+            }
+
+        ]
+    },
+
+
+    {
+        question:
+            "You have learned a concept. What would you like to do next?",
+
+        options: [
+
+            {
+                text: "See another visual example",
+                type: "Visualizer"
+            },
+
+            {
+                text: "See how the concept changes the story's outcome",
+                type: "Storyteller"
+            },
+
+            {
+                text: "Solve a new challenge",
+                type: "Challenger"
+            },
+
+            {
+                text: "Apply it to a real situation",
+                type: "Explorer"
+            }
+
+        ]
+    }
+
+];
+
+
+
+/* ==========================
+   VARIABLES
+========================== */
+
+let currentQuestion = 0;
+
+let selectedOption = null;
+
+const scores = {
+
+    Visualizer: 0,
+
+    Explorer: 0,
+
+    Challenger: 0,
+
+    Storyteller: 0
+
+};
+
+
+
+/* ==========================
+   LOAD QUESTION
+========================== */
+
+function loadQuestion() {
+
+    const current =
+        questions[currentQuestion];
+
+
+    document.getElementById("questionNumber").textContent =
+        "Question " + (currentQuestion + 1);
+
+
+    document.querySelector(".progress-text span:last-child").textContent =
+        (currentQuestion + 1) + " / 5";
+
+
+    document.getElementById("progressBar").style.width =
+        ((currentQuestion + 1) / 5 * 100) + "%";
+
+
+    document.getElementById("question").textContent =
+        current.question;
+
+
+    const optionsContainer =
+        document.getElementById("options");
+
+
+    optionsContainer.innerHTML = "";
+
+
+    selectedOption = null;
+
+
+    document.getElementById("nextButton").disabled = true;
+
+
+    current.options.forEach(function(option, index) {
+
+        const div =
+            document.createElement("div");
+
+
+        div.className = "option";
+
+
+        div.innerHTML =
+            "<strong>" +
+            String.fromCharCode(65 + index) +
+            ".</strong> " +
+            option.text;
+
+
+        div.onclick = function() {
+
+            document
+                .querySelectorAll(".option")
+                .forEach(function(item) {
+
+                    item.classList.remove("selected");
+
+                });
+
+
+            div.classList.add("selected");
+
+
+            selectedOption = option.type;
+
+
+            document.getElementById("nextButton").disabled =
+                false;
+
+        };
+
+
+        optionsContainer.appendChild(div);
+
+    });
+
+}
+
+
+
+/* ==========================
+   NEXT QUESTION
+========================== */
+
+function nextQuestion() {
+
+    if (selectedOption === null) {
+        return;
+    }
+
+
+    scores[selectedOption]++;
+
+
+    if (currentQuestion < questions.length - 1) {
+
+        currentQuestion++;
+
+        loadQuestion();
+
+    }
+
+    else {
+
+        showResult();
+
+    }
+
+}
+
+
+
+/* ==========================
+   FIND WINNER
+========================== */
+
+function showResult() {
+
+    let winner = "Visualizer";
+
+    let highestScore = scores.Visualizer;
+
+
+    if (scores.Explorer > highestScore) {
+
+        winner = "Explorer";
+
+        highestScore = scores.Explorer;
+
+    }
+
+
+    if (scores.Challenger > highestScore) {
+
+        winner = "Challenger";
+
+        highestScore = scores.Challenger;
+
+    }
+
+
+    if (scores.Storyteller > highestScore) {
+
+        winner = "Storyteller";
+
+        highestScore = scores.Storyteller;
+
+    }
+
+
+    localStorage.setItem(
+        "learningStyle",
+        winner
+    );
+
+
+    const descriptions = {
+
+        Visualizer:
+            "You learn best through pictures, diagrams, animations and visual connections. LearnIQ will use visual explanations, mind maps and examples for you.",
+
+        Explorer:
+            "You learn best by connecting concepts to real-world situations. LearnIQ will use practical problems and real-life examples.",
+
+        Challenger:
+            "You learn best by attempting problems first. LearnIQ will let you solve problems before introducing formulas and new tools.",
+
+        Storyteller:
+            "You learn best when concepts have meaning and context. LearnIQ will use characters, situations, conflicts and goals to explain concepts."
+
+    };
+
+
+    const icons = {
+
+        Visualizer: "👀",
+
+        Explorer: "🧭",
+
+        Challenger: "🧩",
+
+        Storyteller: "📖"
+
+    };
+
+
+    document.getElementById("quizCard").style.display =
+        "none";
+
+
+    document.getElementById("resultCard").style.display =
+        "block";
+
+
+    document.getElementById("resultTitle").textContent =
+        winner;
+
+
+    document.getElementById("resultDescription").textContent =
+        descriptions[winner];
+
+
+    document.getElementById("resultIcon").textContent =
+        icons[winner];
+
+}
+
+
+
+/* ==========================
+   CONTINUE
+========================== */
+
+function continueToTopic() {
+
+    window.location.href =
+        "topic.html";
+
+}
+
+
+
+/* ==========================
+   START
+========================== */
+
+loadQuestion();
+
+
+</script>
+
+</body>
+
+</html>

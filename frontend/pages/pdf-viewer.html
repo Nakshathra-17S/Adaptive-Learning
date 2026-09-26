@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>LearnIQ | PDF Notes</title>
+
+    <link rel="stylesheet" href="../style.css">
+
+    <style>
+
+        body {
+            background: #f6f7ff;
+        }
+
+        .pdf-page {
+            max-width: 1200px;
+            margin: auto;
+            padding: 25px;
+        }
+
+        .pdf-header {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(40,40,70,0.08);
+        }
+
+        .pdf-header h1 {
+            margin: 0 0 8px;
+            color: #242a45;
+        }
+
+        .pdf-header p {
+            margin: 0;
+            color: #68708a;
+        }
+
+        .pdf-container {
+            background: white;
+            padding: 15px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(40,40,70,0.08);
+        }
+
+        .pdf-container iframe {
+            width: 100%;
+            height: 700px;
+            border: none;
+            border-radius: 12px;
+        }
+
+        .bottom-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 25px;
+            gap: 15px;
+        }
+
+        .back-button,
+        .next-button {
+            padding: 13px 24px;
+            border-radius: 12px;
+            border: none;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .back-button {
+            background: white;
+            color: #554bd4;
+            border: 1px solid #e1e4f5;
+        }
+
+        .next-button {
+            background: #6c63ff;
+            color: white;
+            box-shadow: 0 8px 20px rgba(108,99,255,0.25);
+        }
+
+        .next-button:hover {
+            transform: translateY(-2px);
+        }
+
+        @media(max-width:700px) {
+
+            .pdf-page {
+                padding: 15px;
+            }
+
+            .pdf-container iframe {
+                height: 600px;
+            }
+
+            .bottom-controls {
+                flex-direction: column;
+            }
+
+            .back-button,
+            .next-button {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="pdf-page">
+
+
+    <!-- HEADER -->
+
+    <div class="pdf-header">
+
+        <h1>
+            📄 Trigonometry Notes
+        </h1>
+
+        <p>
+            Read through the notes and continue when you're ready.
+        </p>
+
+    </div>
+
+
+    <!-- PDF -->
+
+    <div class="pdf-container">
+
+        <iframe
+            src="../pdf/trigonometry.pdf">
+        </iframe>
+
+    </div>
+
+
+    <!-- BUTTONS -->
+
+    <div class="bottom-controls">
+
+        <button
+            class="back-button"
+            onclick="history.back()">
+
+            ← Back
+
+        </button>
+
+
+        <button
+            class="next-button"
+            onclick="goNext()">
+
+            Next →
+
+        </button>
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+function goNext() {
+
+    window.location.href =
+        "tutor.html";
+
+}
+
+</script>
+
+
+</body>
+
+</html>

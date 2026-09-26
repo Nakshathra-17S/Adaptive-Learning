@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LearnIQ | Interactive Mind Map</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background:
+        radial-gradient(circle at 10% 20%, rgba(108,99,255,0.10), transparent 25%),
+        radial-gradient(circle at 90% 80%, rgba(75,180,255,0.10), transparent 25%),
+        #f4f7ff;
+    color: #18213d;
+}
+
+.page {
+    min-height: 100vh;
+    padding: 25px;
+}
+
+/* HEADER */
+
+.header {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 27px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #6c63ff;
+}
+
+.badge {
+    background: white;
+    padding: 10px 18px;
+    border-radius: 30px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* BACK BUTTON */
+
+.back-btn {
+    margin: 0 auto 20px;
+    display: block;
+    max-width: 1200px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+
+    padding: 10px 18px;
+
+    border: 1px solid #e1e4f5;
+    border-radius: 12px;
+
+    background: white;
+    color: #554bd4;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow: 0 5px 18px rgba(40,40,70,0.06);
+
+    transition: 0.25s;
+}
+
+.back-btn:hover {
+    background: #faf9ff;
+    transform: translateX(-4px);
+}
+
+/* MAIN */
+
+.container {
+    max-width: 1200px;
+    margin: 30px auto;
+}
+
+.card {
+    background: rgba(255,255,255,0.94);
+    border-radius: 28px;
+    padding: 35px;
+    box-shadow: 0 15px 45px rgba(40,50,100,0.10);
+}
+
+.title-area {
+    text-align: center;
+}
+
+.tag {
+    display: inline-block;
+    padding: 8px 15px;
+    background: #eef0ff;
+    color: #554bd4;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+h1 {
+    margin: 15px 0 8px;
+    font-size: 34px;
+}
+
+.subtitle {
+    color: #68708a;
+    max-width: 650px;
+    margin: auto;
+    line-height: 1.6;
+}
+
+/* MIND MAP */
+
+.map-area {
+    position: relative;
+    margin-top: 45px;
+    min-height: 450px;
+}
+
+/* CONNECTION LINES */
+
+.line {
+    position: absolute;
+    height: 4px;
+    background: linear-gradient(90deg, #6c63ff, #9c96ff);
+    transform-origin: left center;
+    border-radius: 10px;
+    opacity: 0.5;
+}
+
+.line-one {
+    width: 250px;
+    left: 25%;
+    top: 220px;
+    transform: rotate(-28deg);
+}
+
+.line-two {
+    width: 250px;
+    left: 50%;
+    top: 220px;
+}
+
+.line-three {
+    width: 250px;
+    left: 50%;
+    top: 220px;
+    transform: rotate(28deg);
+}
+
+/* CENTER */
+
+.center-node {
+    position: absolute;
+    left: 50%;
+    top: 140px;
+    transform: translateX(-50%);
+    width: 210px;
+    height: 120px;
+
+    background: linear-gradient(135deg, #6c63ff, #8179ff);
+    color: white;
+
+    border-radius: 28px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow: 0 15px 35px rgba(108,99,255,0.30);
+
+    z-index: 5;
+
+    animation: float 3s ease-in-out infinite;
+}
+
+.center-node .icon {
+    font-size: 32px;
+}
+
+.center-node strong {
+    font-size: 22px;
+    margin-top: 5px;
+}
+
+.center-node small {
+    opacity: 0.85;
+    margin-top: 4px;
+}
+
+/* BRANCHES */
+
+.branch {
+    position: absolute;
+    width: 260px;
+    min-height: 175px;
+
+    background: white;
+    border-radius: 22px;
+    padding: 22px;
+
+    border: 2px solid #edf0ff;
+
+    box-shadow: 0 12px 30px rgba(30,40,90,0.08);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.branch:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 35px rgba(30,40,90,0.14);
+    border-color: #aaa5ff;
+}
+
+.branch-one {
+    left: 3%;
+    top: 30px;
+}
+
+.branch-two {
+    right: 3%;
+    top: 30px;
+}
+
+.branch-three {
+    left: 50%;
+    bottom: -10px;
+    transform: translateX(-50%);
+}
+
+.branch-three:hover {
+    transform: translateX(-50%) translateY(-8px);
+}
+
+.branch-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.branch-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 14px;
+
+    background: #eef0ff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 23px;
+}
+
+.branch h3 {
+    margin: 0;
+    color: #554bd4;
+    font-size: 19px;
+}
+
+.branch p {
+    white-space: pre-line;
+    color: #59627b;
+    line-height: 1.6;
+    margin: 0;
+    font-size: 14px;
+}
+
+/* DETAIL PANEL */
+
+.detail-panel {
+    margin-top: 35px;
+    padding: 25px;
+
+    background: linear-gradient(135deg, #f8f8ff, #eef6ff);
+
+    border-radius: 20px;
+
+    display: none;
+
+    border: 1px solid #e3e7ff;
+}
+
+.detail-panel.show {
+    display: block;
+    animation: appear 0.3s ease;
+}
+
+.detail-panel h3 {
+    margin-top: 0;
+    color: #554bd4;
+}
+
+.detail-panel p {
+    color: #59627b;
+    line-height: 1.7;
+}
+
+/* BUTTONS */
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-top: 35px;
+    flex-wrap: wrap;
+}
+
+button {
+    border: none;
+    padding: 14px 24px;
+    border-radius: 13px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.listen {
+    background: #eef0ff;
+    color: #4d46c7;
+}
+
+.listen:hover {
+    background: #e1e3ff;
+}
+
+.next-btn {
+    background: #6c63ff;
+    color: white;
+    box-shadow: 0 8px 20px rgba(108,99,255,0.25);
+}
+
+.next-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(108,99,255,0.32);
+}
+
+/* ANIMATIONS */
+
+@keyframes float {
+
+    0%,100% {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    50% {
+        transform: translateX(-50%) translateY(-7px);
+    }
+
+}
+
+@keyframes appear {
+
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+/* MOBILE */
+
+@media(max-width:850px) {
+
+    .map-area {
+        min-height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .line {
+        display: none;
+    }
+
+    .center-node,
+    .branch,
+    .branch-three {
+        position: relative;
+        left: auto;
+        right: auto;
+        top: auto;
+        bottom: auto;
+        transform: none;
+        width: 100%;
+    }
+
+    .center-node {
+        margin: auto;
+    }
+
+    .branch-three:hover {
+        transform: translateY(-8px);
+    }
+
+    .controls {
+        justify-content: center;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="page">
+
+<!-- BACK -->
+
+<button class="back-btn" onclick="history.back()">
+    ← Back
+</button>
+
+
+<header class="header">
+
+    <div class="logo">
+        ✦ <span>LearnIQ</span>
+    </div>
+
+    <div class="badge">
+        <span id="studentInfo">Loading...</span>
+    </div>
+
+</header>
+
+
+<main class="container">
+
+<div class="card">
+
+    <div class="title-area">
+
+        <span class="tag">
+            🧠 Adaptive Learning Map
+        </span>
+
+        <h1>
+            Your Trigonometry Mind Map
+        </h1>
+
+        <p
+            class="subtitle"
+            id="description">
+            Loading your personalized map...
+        </p>
+
+    </div>
+
+
+    <div class="map-area">
+
+        <!-- CONNECTIONS -->
+
+        <div class="line line-one"></div>
+        <div class="line line-two"></div>
+        <div class="line line-three"></div>
+
+
+        <!-- CENTER -->
+
+        <div class="center-node">
+
+            <div class="icon">
+                📐
+            </div>
+
+            <strong>
+                TRIGONOMETRY
+            </strong>
+
+            <small>
+                Connect • Understand • Apply
+            </small>
+
+        </div>
+
+
+        <!-- TRIANGLE -->
+
+        <div
+            class="branch branch-one"
+            onclick="showDetail('triangle')">
+
+            <div class="branch-header">
+
+                <div class="branch-icon">
+                    📐
+                </div>
+
+                <h3>
+                    Triangle
+                </h3>
+
+            </div>
+
+            <p id="triangleNode">
+                Loading...
+            </p>
+
+        </div>
+
+
+        <!-- RATIOS -->
+
+        <div
+            class="branch branch-two"
+            onclick="showDetail('ratio')">
+
+            <div class="branch-header">
+
+                <div class="branch-icon">
+                    📊
+                </div>
+
+                <h3>
+                    Ratios
+                </h3>
+
+            </div>
+
+            <p id="ratioNode">
+                Loading...
+            </p>
+
+        </div>
+
+
+        <!-- APPLICATION -->
+
+        <div
+            class="branch branch-three"
+            onclick="showDetail('application')">
+
+            <div class="branch-header">
+
+                <div class="branch-icon">
+                    🌍
+                </div>
+
+                <h3>
+                    Real-World Application
+                </h3>
+
+            </div>
+
+            <p id="applicationNode">
+                Loading...
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- DETAIL -->
+
+    <div
+        id="detailPanel"
+        class="detail-panel">
+
+        <h3 id="detailTitle">
+            Explore the map
+        </h3>
+
+        <p id="detailText">
+            Click a branch to explore it.
+        </p>
+
+    </div>
+
+
+    <!-- CONTROLS -->
+
+    <div class="controls">
+
+        <button
+            class="listen"
+            onclick="speakMap()">
+
+            🔊 Listen
+
+        </button>
+
+
+        <button
+            class="next-btn"
+            onclick="goNext()">
+
+            Next →
+
+        </button>
+
+    </div>
+
+</div>
+
+</main>
+
+</div>
+
+
+<script>
+
+/* =========================
+   STUDENT INFORMATION
+========================= */
+
+const learningStyle =
+    localStorage.getItem("learningStyle") || "Visualizer";
+
+const learningLevel =
+    localStorage.getItem("learningLevel") || "Beginner";
+
+const studentName =
+    localStorage.getItem("studentName") || "Learner";
+
+
+document.getElementById("studentInfo").textContent =
+    studentName +
+    " • " +
+    learningStyle +
+    " • " +
+    learningLevel;
+
+
+/* =========================
+   PERSONALIZED CONTENT
+========================= */
+
+const maps = {
+
+"Visualizer-Beginner": {
+
+description:
+"Your map focuses on seeing and understanding the basic structure of Trigonometry.",
+
+triangle:
+"• 3 sides\n• 3 angles\n• Right triangle\n• Identify opposite, adjacent and hypotenuse",
+
+ratio:
+"• sin θ = Opposite / Hypotenuse\n• cos θ = Adjacent / Hypotenuse\n• tan θ = Opposite / Adjacent",
+
+application:
+"Start by identifying the sides of a right triangle and connect them to the correct ratio."
+
+},
+
+"Visualizer-Intermediate": {
+
+description:
+"Your map connects visual relationships with practical calculations.",
+
+triangle:
+"• Right triangle\n• Known and unknown sides\n• Angle relationships",
+
+ratio:
+"• SOH\n• CAH\n• TOA\n• Choose the ratio from the known sides",
+
+application:
+"Use a visual triangle to calculate an unknown side or angle."
+
+},
+
+"Visualizer-Advanced": {
+
+description:
+"Your map connects advanced relationships with multi-step applications.",
+
+triangle:
+"• Multiple angles\n• Multiple sides\n• Complete triangle relationships",
+
+ratio:
+"• sin θ = O/H\n• cos θ = A/H\n• tan θ = O/A\n• Select the most useful relationship",
+
+application:
+"Combine relationships to solve multi-step trigonometric problems."
+
+},
+
+"Storyteller-Beginner": {
+
+description:
+"Your map turns Trigonometry into a simple mathematical story.",
+
+triangle:
+"📖 A character discovers a right triangle problem.",
+
+ratio:
+"📖 The character learns three tools: sine, cosine and tangent.",
+
+application:
+"📖 The ratios help the character solve the original problem."
+
+},
+
+"Storyteller-Intermediate": {
+
+description:
+"Your map follows a practical problem from situation to solution.",
+
+triangle:
+"📖 Situation → Triangle model",
+
+ratio:
+"📖 Known information → Choose the correct ratio",
+
+application:
+"📖 Apply the ratio → Calculate → Explain the result"
+
+},
+
+"Storyteller-Advanced": {
+
+description:
+"Your map follows a realistic scenario through an advanced mathematical solution.",
+
+triangle:
+"📖 Real-world problem → Mathematical model",
+
+ratio:
+"📖 Identify information → Select relationship → Calculate",
+
+application:
+"📖 Use Trigonometry to solve indirect measurement problems."
+
+},
+
+"Challenger-Beginner": {
+
+description:
+"Your map is organized around solving a problem step by step.",
+
+triangle:
+"🎯 Identify the three sides of the right triangle.",
+
+ratio:
+"🎯 O + H → Sine\n🎯 A + H → Cosine\n🎯 O + A → Tangent",
+
+application:
+"🎯 Choose the correct ratio and solve."
+
+},
+
+"Challenger-Intermediate": {
+
+description:
+"Your map emphasizes choosing the right mathematical tool before calculating.",
+
+triangle:
+"🎯 Identify known values.\n🎯 Identify the unknown.",
+
+ratio:
+"🎯 Match the known sides to a ratio.",
+
+application:
+"🎯 Substitute → Calculate → Check"
+
+},
+
+"Challenger-Advanced": {
+
+description:
+"Your map focuses on independent problem solving and verification.",
+
+triangle:
+"🎯 Analyze the complete triangle.",
+
+ratio:
+"🎯 Select the relationship without being directly told.",
+
+application:
+"🎯 Solve → Verify → Apply to a new problem."
+
+},
+
+"Explorer-Beginner": {
+
+description:
+"Your map shows how Trigonometry can help measure things in the real world.",
+
+triangle:
+"🌍 Object + Distance + Angle",
+
+ratio:
+"🌍 An angle connects height and distance.",
+
+application:
+"🌍 Estimate simple heights and distances."
+
+},
+
+"Explorer-Intermediate": {
+
+description:
+"Your map connects a real-world measurement to a mathematical solution.",
+
+triangle:
+"🌍 Real situation → Right triangle",
+
+ratio:
+"🌍 tan θ = Height / Distance",
+
+application:
+"🌍 Calculate the height of a real object."
+
+},
+
+"Explorer-Advanced": {
+
+description:
+"Your map models a real-world measurement problem using Trigonometry.",
+
+triangle:
+"🌍 Survey → Triangle model → Measurements",
+
+ratio:
+"🌍 tan θ = Opposite / Adjacent",
+
+application:
+"🌍 Calculate and interpret an estimated measurement."
+
+}
+
+};
+
+
+/* =========================
+   LOAD PERSONALIZED MAP
+========================= */
+
+const key =
+    learningStyle + "-" + learningLevel;
+
+const data =
+    maps[key] || maps["Visualizer-Beginner"];
+
+
+document.getElementById("description").textContent =
+    data.description;
+
+document.getElementById("triangleNode").textContent =
+    data.triangle;
+
+document.getElementById("ratioNode").textContent =
+    data.ratio;
+
+document.getElementById("applicationNode").textContent =
+    data.application;
+
+
+/* =========================
+   INTERACTIVE DETAILS
+========================= */
+
+function showDetail(type) {
+
+    const panel =
+        document.getElementById("detailPanel");
+
+    const title =
+        document.getElementById("detailTitle");
+
+    const text =
+        document.getElementById("detailText");
+
+
+    if (type === "triangle") {
+
+        title.textContent =
+            "📐 Understanding the Triangle";
+
+        text.textContent =
+            "A right triangle gives us the structure we need for Trigonometry. " +
+            "Look at the angle you are working with and identify the opposite, " +
+            "adjacent and hypotenuse sides.";
+
+    }
+
+    else if (type === "ratio") {
+
+        title.textContent =
+            "📊 Choosing a Trigonometric Ratio";
+
+        text.textContent =
+            "Sine, cosine and tangent connect angles with side lengths. " +
+            "The best ratio depends on which sides are known and which side or angle " +
+            "you need to find.";
+
+    }
+
+    else {
+
+        title.textContent =
+            "🌍 Trigonometry in the Real World";
+
+        text.textContent =
+            "Trigonometry can be used to estimate heights, distances and angles " +
+            "without directly measuring the object. Buildings, ladders, surveying " +
+            "and navigation are common applications.";
+
+    }
+
+
+    panel.classList.add("show");
+
+    panel.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest"
+    });
+
+}
+
+
+/* =========================
+   VOICE
+========================= */
+
+function speakMap() {
+
+    if (!("speechSynthesis" in window)) {
+
+        alert("Voice is not supported in this browser.");
+
+        return;
+
+    }
+
+
+    window.speechSynthesis.cancel();
+
+
+    const text =
+        data.description +
+        ". " +
+        data.triangle +
+        ". " +
+        data.ratio +
+        ". " +
+        data.application;
+
+
+    const speech =
+        new SpeechSynthesisUtterance(text);
+
+
+    speech.lang = "en-IN";
+
+    speech.rate = 0.9;
+
+    speech.pitch = 1;
+
+
+    window.speechSynthesis.speak(speech);
+
+}
+
+
+/* =========================
+   NEXT
+========================= */
+
+function goNext() {
+
+    window.location.href =
+        "tutor.html";
+
+}
+
+</script>
+
+</body>
+
+</html>

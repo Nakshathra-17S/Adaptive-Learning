@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LearnIQ | Personalized Lesson</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7ff;
+    color: #18213d;
+}
+
+.page {
+    min-height: 100vh;
+    padding: 25px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.points {
+    background: white;
+    padding: 10px 18px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 30px auto;
+}
+
+.personalization {
+    background: white;
+    padding: 15px 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.lesson-card {
+    background: white;
+    border-radius: 25px;
+    padding: 35px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.progress-area {
+    margin-bottom: 25px;
+}
+
+.progress-text {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.progress {
+    height: 10px;
+    background: #e4e8f5;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 25%;
+    background: #6c63ff;
+    transition: width 0.5s;
+}
+
+.animation-box {
+    height: 270px;
+    background: #eef1ff;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 100px solid transparent;
+    border-right: 100px solid transparent;
+    border-bottom: 180px solid #6c63ff;
+    animation: floatTriangle 2s infinite ease-in-out;
+}
+
+@keyframes floatTriangle {
+
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+}
+
+.lesson-number {
+    color: #6c63ff;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+h1 {
+    font-size: 36px;
+    margin: 10px 0;
+}
+
+.subtitle {
+    font-size: 18px;
+    color: #68708a;
+    margin-bottom: 20px;
+}
+
+.explanation {
+    font-size: 17px;
+    line-height: 1.7;
+    background: #f7f8ff;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.formula {
+    margin-top: 20px;
+    padding: 20px;
+    background: #fff7df;
+    border-radius: 15px;
+}
+
+.formula strong {
+    font-size: 22px;
+}
+
+.example {
+    margin-top: 20px;
+    padding: 20px;
+    background: #eefaf2;
+    border-radius: 15px;
+}
+
+.controls {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+button {
+    border: none;
+    padding: 13px 22px;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.listen {
+    background: #eef1ff;
+    color: #4d46c7;
+}
+
+.stop {
+    background: #ffecec;
+    color: #d94b4b;
+}
+
+.next {
+    background: #6c63ff;
+    color: white;
+    margin-left: auto;
+}
+
+.complete {
+    display: none;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.complete-icon {
+    font-size: 70px;
+}
+
+.complete h1 {
+    color: #6c63ff;
+}
+
+.continue-btn {
+    margin-top: 25px;
+    background: #6c63ff;
+    color: white;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="page">
+
+<header class="header">
+
+<div class="logo">
+✦ LearnIQ
+</div>
+
+<div class="points">
+⭐ <span id="points">10</span> points
+</div>
+
+</header>
+
+
+<main class="container">
+
+
+<div class="personalization">
+
+<strong>Personalized for you</strong>
+
+<br>
+
+<span id="personalizationText">
+Loading...
+</span>
+
+</div>
+
+
+<div class="lesson-card" id="lessonCard">
+
+
+<div class="progress-area">
+
+<div class="progress-text">
+
+<span id="lessonNumber">
+LESSON 1
+</span>
+
+<span id="progressText">
+1 / 4
+</span>
+
+</div>
+
+<div class="progress">
+
+<div
+class="progress-bar"
+id="progressBar">
+</div>
+
+</div>
+
+</div>
+
+
+<div class="animation-box">
+
+<div class="triangle"></div>
+
+</div>
+
+
+<div class="lesson-number">
+TRIGONOMETRY
+</div>
+
+<h1 id="lessonTitle">
+Loading...
+</h1>
+
+<p
+class="subtitle"
+id="lessonSubtitle">
+Loading...
+</p>
+
+
+<div
+class="explanation"
+id="lessonExplanation">
+
+Loading...
+
+</div>
+
+
+<div class="formula">
+
+<p>
+Key idea
+</p>
+
+<strong id="formula">
+Loading...
+</strong>
+
+</div>
+
+
+<div class="example">
+
+<strong>💡 Try this</strong>
+
+<p id="exampleQuestion">
+Loading...
+</p>
+
+<p id="exampleAnswer">
+Loading...
+</p>
+
+</div>
+
+
+<div class="controls">
+
+<button
+class="listen"
+onclick="speakLesson()">
+
+🔊 Listen
+
+</button>
+
+
+<button
+class="stop"
+onclick="stopSpeech()">
+
+⏹ Stop
+
+</button>
+
+
+<button
+class="next"
+id="nextButton"
+onclick="nextLesson()">
+
+Next →
+
+</button>
+
+</div>
+
+</div>
+
+
+<div
+class="lesson-card complete"
+id="completeCard">
+
+<div class="complete-icon">
+🎉
+</div>
+
+<h1>
+Lesson Complete!
+</h1>
+
+<p>
+Great job! You completed your personalized lesson.
+</p>
+
+<h2>
+⭐ <span id="finalPoints">70</span> points earned
+</h2>
+
+<button
+class="continue-btn"
+onclick="continueToTutor()">
+
+Continue to AI Tutor →
+
+</button>
+
+</div>
+
+
+</main>
+
+</div>
+
+
+<script>
+
+
+/* =========================
+   STUDENT DATA
+========================= */
+
+const learningStyle =
+localStorage.getItem("learningStyle") || "Visualizer";
+
+const learningLevel =
+localStorage.getItem("learningLevel") || "Beginner";
+
+const studentName =
+localStorage.getItem("studentName") || "Learner";
+
+
+document.getElementById("personalizationText").textContent =
+studentName +
+" • " +
+learningStyle +
+" • " +
+learningLevel;
+
+
+/* =========================
+   PERSONALIZED LESSONS
+========================= */
+
+const lessonLibrary = {
+
+
+/* =========================
+   VISUALIZER
+========================= */
+
+"Visualizer-Beginner": [
+
+{
+title: "See the Triangle",
+subtitle: "Let's understand the shape first.",
+
+explanation:
+"Look at a triangle as a visual shape with three sides and three angles. Trigonometry uses these relationships to understand how the sides and angles are connected.",
+
+formula:
+"Triangle → 3 sides + 3 angles",
+
+question:
+"How many sides can you see in a triangle?",
+
+answer:
+"3 sides."
+},
+
+{
+title: "Meet the Three Ratios",
+subtitle: "See how the sides are connected.",
+
+explanation:
+"Imagine a right-angled triangle. The three important ratios are sine, cosine and tangent. Each one compares different sides.",
+
+formula:
+"sin θ = Opposite / Hypotenuse",
+
+question:
+"Which ratio uses opposite and hypotenuse?",
+
+answer:
+"Sine."
+},
+
+{
+title: "Visualizing Cosine",
+subtitle: "Focus on the adjacent side.",
+
+explanation:
+"Cosine compares the adjacent side with the hypotenuse. Think of these two sides as the pair connected to the angle.",
+
+formula:
+"cos θ = Adjacent / Hypotenuse",
+
+question:
+"Which side pairs with the hypotenuse in cosine?",
+
+answer:
+"The adjacent side."
+},
+
+{
+title: "Visualizing Tangent",
+subtitle: "Compare the two shorter sides.",
+
+explanation:
+"Tangent compares the opposite side with the adjacent side. These are the two sides around the angle.",
+
+formula:
+"tan θ = Opposite / Adjacent",
+
+question:
+"What does tangent compare?",
+
+answer:
+"Opposite and adjacent."
+}
+
+],
+
+
+/* =========================
+   VISUALIZER INTERMEDIATE
+========================= */
+
+"Visualizer-Intermediate": [
+
+{
+title: "Connect Angles and Sides",
+subtitle: "See the relationship, not just the shape.",
+
+explanation:
+"In a right triangle, changing an angle changes the relative lengths of the sides. Trigonometric ratios describe this relationship.",
+
+formula:
+"Ratio = relationship between two sides",
+
+question:
+"Why are ratios useful in a triangle?",
+
+answer:
+"They describe relationships between sides."
+},
+
+{
+title: "Compare the Ratios",
+subtitle: "See which sides each ratio uses.",
+
+explanation:
+"Sine uses opposite and hypotenuse. Cosine uses adjacent and hypotenuse. Tangent uses opposite and adjacent.",
+
+formula:
+"SOH • CAH • TOA",
+
+question:
+"Which ratio uses adjacent and hypotenuse?",
+
+answer:
+"Cosine."
+},
+
+{
+title: "Apply Cosine",
+subtitle: "Use the visual relationship to solve.",
+
+explanation:
+"If you know an angle and the hypotenuse, cosine can help you determine the adjacent side.",
+
+formula:
+"Adjacent = Hypotenuse × cos θ",
+
+question:
+"If θ = 60° and the hypotenuse is 10, what is the adjacent side?",
+
+answer:
+"5."
+},
+
+{
+title: "Apply Tangent",
+subtitle: "Use the two shorter sides.",
+
+explanation:
+"Tangent becomes useful when you know the relationship between the opposite and adjacent sides.",
+
+formula:
+"tan θ = Opposite / Adjacent",
+
+question:
+"If opposite = 6 and adjacent = 3, what is tan θ?",
+
+answer:
+"2."
+}
+
+],
+
+
+/* =========================
+   VISUALIZER ADVANCED
+========================= */
+
+"Visualizer-Advanced": [
+
+{
+title: "See Trigonometry as a System",
+subtitle: "Connect the complete triangle.",
+
+explanation:
+"Trigonometry is a system of relationships between angles and sides. Visualizing the complete triangle helps you select the correct ratio.",
+
+formula:
+"sin θ = O/H   cos θ = A/H   tan θ = O/A",
+
+question:
+"Which ratio should you use when opposite and adjacent are known?",
+
+answer:
+"Tangent."
+},
+
+{
+title: "Visual Ratio Selection",
+subtitle: "Choose the correct relationship.",
+
+explanation:
+"When solving a problem, first identify the known sides and the unknown side. Then choose the ratio that connects them.",
+
+formula:
+"Known sides → choose ratio → solve",
+
+question:
+"If adjacent and hypotenuse are known, which ratio is useful?",
+
+answer:
+"Cosine."
+},
+
+{
+title: "Multi-Step Triangle",
+subtitle: "Combine visual reasoning with calculation.",
+
+explanation:
+"A triangle can contain several relationships. You may need to identify the correct ratio before calculating an unknown side or angle.",
+
+formula:
+"Choose → Substitute → Calculate",
+
+question:
+"If tan θ = 1, what is θ for an acute angle?",
+
+answer:
+"45°."
+},
+
+{
+title: "Real Application",
+subtitle: "Turn the diagram into a solution.",
+
+explanation:
+"Trigonometry can be used to calculate heights and distances that are difficult to measure directly.",
+
+formula:
+"tan θ = height / distance",
+
+question:
+"Which ratio is commonly useful when height and horizontal distance form the two sides around an angle?",
+
+answer:
+"Tangent."
+}
+
+],
+
+
+/* =========================
+   STORYTELLER
+========================= */
+
+"Storyteller-Beginner": [
+
+{
+title: "The Triangle Mission",
+subtitle: "Meet our little problem solver.",
+
+explanation:
+"Imagine a student looking at a triangular sign and wondering how its sides and angles are connected. That is where trigonometry begins.",
+
+formula:
+"Triangle → sides + angles",
+
+question:
+"What shape is our student studying?",
+
+answer:
+"A triangle."
+},
+
+{
+title: "The Missing Side",
+subtitle: "Our character needs your help.",
+
+explanation:
+"Our character knows two sides of a right triangle and needs to understand their relationship. Sine, cosine and tangent provide useful tools.",
+
+formula:
+"sin θ = O/H",
+
+question:
+"Which ratio compares opposite and hypotenuse?",
+
+answer:
+"Sine."
+},
+
+{
+title: "The Building Problem",
+subtitle: "A height needs to be understood.",
+
+explanation:
+"Our character wants to understand a building's height without directly measuring the wall. Trigonometry can connect an angle with distances.",
+
+formula:
+"tan θ = O/A",
+
+question:
+"Which ratio compares opposite and adjacent?",
+
+answer:
+"Tangent."
+},
+
+{
+title: "Mission Complete",
+subtitle: "The character now understands the basics.",
+
+explanation:
+"By understanding the sides and angles of a right triangle, our character can begin solving real problems using trigonometric ratios.",
+
+formula:
+"SOH • CAH • TOA",
+
+question:
+"What are the three basic ratios?",
+
+answer:
+"Sine, cosine and tangent."
+}
+
+],
+
+
+"Storyteller-Intermediate": [
+
+{
+title: "The Surveyor's Problem",
+subtitle: "A measurement challenge begins.",
+
+explanation:
+"A surveyor needs to estimate a distance that cannot be measured directly. An angle and a known side provide the clues.",
+
+formula:
+"Choose the ratio that connects the known values.",
+
+question:
+"Why would a trigonometric ratio help?",
+
+answer:
+"It connects angles and sides."
+},
+
+{
+title: "Choosing the Right Tool",
+subtitle: "The story gives you clues.",
+
+explanation:
+"The surveyor knows the adjacent side and hypotenuse. Now the correct trigonometric relationship must be selected.",
+
+formula:
+"Adjacent + Hypotenuse → cosine",
+
+question:
+"Which ratio should be considered?",
+
+answer:
+"Cosine."
+},
+
+{
+title: "Solving the Distance",
+subtitle: "The clues become numbers.",
+
+explanation:
+"Suppose the hypotenuse is 10 and the angle is 60°. Cosine can be used to calculate the adjacent side.",
+
+formula:
+"Adjacent = 10 × cos 60°",
+
+question:
+"What is the adjacent side?",
+
+answer:
+"5."
+},
+
+{
+title: "The Final Decision",
+subtitle: "Use the right relationship.",
+
+explanation:
+"Different problems provide different clues. The key is identifying the sides and angle before choosing a ratio.",
+
+formula:
+"Identify → Choose → Calculate",
+
+question:
+"What should you identify first?",
+
+answer:
+"The known sides, unknown value and angle."
+}
+
+],
+
+
+"Storyteller-Advanced": [
+
+{
+title: "The Engineer's Challenge",
+subtitle: "A real measurement problem appears.",
+
+explanation:
+"An engineer must estimate the height of a structure without climbing it. A measured horizontal distance and angle of elevation are available.",
+
+formula:
+"tan θ = height / distance",
+
+question:
+"Which ratio connects height and horizontal distance?",
+
+answer:
+"Tangent."
+},
+
+{
+title: "The Angle Clue",
+subtitle: "One measurement changes everything.",
+
+explanation:
+"The angle of elevation provides the relationship needed to connect the measured distance to the unknown height.",
+
+formula:
+"height = distance × tan θ",
+
+question:
+"What information connects the height and distance?",
+
+answer:
+"The angle."
+},
+
+{
+title: "The Calculation",
+subtitle: "Now solve the engineering problem.",
+
+explanation:
+"If the distance is 20 m and the angle is 45°, tangent can be used to estimate the height.",
+
+formula:
+"height = 20 × tan 45°",
+
+question:
+"What is the estimated height?",
+
+answer:
+"20 m."
+},
+
+{
+title: "Mission Solved",
+subtitle: "Trigonometry becomes a practical tool.",
+
+explanation:
+"The engineer did not need to directly measure the height. The relationship between angle and distance provided the solution.",
+
+formula:
+"Real measurement → model → calculation",
+
+question:
+"What made the indirect measurement possible?",
+
+answer:
+"The trigonometric relationship."
+}
+
+],
+
+
+/* =========================
+   CHALLENGER
+========================= */
+
+"Challenger-Beginner": [
+
+{
+title: "Your First Challenge",
+subtitle: "Try before learning the formula.",
+
+explanation:
+"Imagine a right triangle. One angle and two sides are related. Your first task is to identify the sides around the angle.",
+
+formula:
+"Opposite • Adjacent • Hypotenuse",
+
+question:
+"Can you name the longest side of a right triangle?",
+
+answer:
+"Hypotenuse."
+},
+
+{
+title: "Ratio Challenge",
+subtitle: "Which ratio fits?",
+
+explanation:
+"You are given opposite and hypotenuse. Which trigonometric ratio should you use?",
+
+formula:
+"sin θ = O/H",
+
+question:
+"Which ratio fits opposite and hypotenuse?",
+
+answer:
+"Sine."
+},
+
+{
+title: "Cosine Challenge",
+subtitle: "Try the next one.",
+
+explanation:
+"You know adjacent and hypotenuse. Select the relationship that connects them.",
+
+formula:
+"cos θ = A/H",
+
+question:
+"Which ratio should you use?",
+
+answer:
+"Cosine."
+},
+
+{
+title: "Final Challenge",
+subtitle: "One last problem.",
+
+explanation:
+"You know opposite and adjacent. Which relationship should you use?",
+
+formula:
+"tan θ = O/A",
+
+question:
+"Which ratio fits?",
+
+answer:
+"Tangent."
+}
+
+],
+
+
+"Challenger-Intermediate": [
+
+{
+title: "Challenge: Choose the Ratio",
+subtitle: "No formula first. Think.",
+
+explanation:
+"You know the opposite side and hypotenuse. Identify the ratio that connects them.",
+
+formula:
+"Think about the two sides given.",
+
+question:
+"Which ratio should you choose?",
+
+answer:
+"Sine."
+},
+
+{
+title: "Challenge: Calculate",
+subtitle: "Now use the relationship.",
+
+explanation:
+"If opposite = 5 and hypotenuse = 10, calculate sin θ.",
+
+formula:
+"sin θ = O/H",
+
+question:
+"What is sin θ?",
+
+answer:
+"0.5."
+},
+
+{
+title: "Challenge: Apply",
+subtitle: "A harder situation.",
+
+explanation:
+"If adjacent = 8 and hypotenuse = 10, use cosine to determine the angle relationship.",
+
+formula:
+"cos θ = 8/10",
+
+question:
+"What is cos θ?",
+
+answer:
+"0.8."
+},
+
+{
+title: "Challenge: Think Ahead",
+subtitle: "Choose before calculating.",
+
+explanation:
+"A problem gives you opposite and adjacent sides. Before calculating anything, decide which ratio is appropriate.",
+
+formula:
+"O + A → tan",
+
+question:
+"Which ratio should you select?",
+
+answer:
+"Tangent."
+}
+
+],
+
+
+"Challenger-Advanced": [
+
+{
+title: "Advanced Challenge",
+subtitle: "No formula is given.",
+
+explanation:
+"A right triangle has opposite side 12 and adjacent side 5. Identify the correct ratio before calculating.",
+
+formula:
+"Choose the relationship yourself.",
+
+question:
+"Which ratio connects these two sides?",
+
+answer:
+"Tangent."
+},
+
+{
+title: "Calculate the Ratio",
+subtitle: "Now calculate.",
+
+explanation:
+"Using opposite = 12 and adjacent = 5, calculate the tangent of the angle.",
+
+formula:
+"tan θ = 12/5",
+
+question:
+"What is tan θ?",
+
+answer:
+"2.4."
+},
+
+{
+title: "Reverse the Problem",
+subtitle: "Work backwards.",
+
+explanation:
+"If tan θ = 1, determine the acute angle that produces this ratio.",
+
+formula:
+"tan θ = 1",
+
+question:
+"What is θ?",
+
+answer:
+"45°."
+},
+
+{
+title: "Final Challenge",
+subtitle: "Use everything you know.",
+
+explanation:
+"Different side combinations require different ratios. Your job is to identify the correct relationship before solving.",
+
+formula:
+"Identify → Select → Calculate",
+
+question:
+"What is the first step in a trigonometry problem?",
+
+answer:
+"Identify the known and unknown values."
+}
+
+],
+
+
+/* =========================
+   EXPLORER
+========================= */
+
+"Explorer-Beginner": [
+
+{
+title: "Measure a Building",
+subtitle: "Where could trigonometry help?",
+
+explanation:
+"Imagine standing outside a building. You cannot easily measure its height directly. Trigonometry can help connect distance, angle and height.",
+
+formula:
+"Angle + distance → height",
+
+question:
+"What are we trying to estimate?",
+
+answer:
+"The building's height."
+},
+
+{
+title: "Find the Right Sides",
+subtitle: "Explore the triangle.",
+
+explanation:
+"The building height becomes the opposite side, while the ground distance becomes the adjacent side.",
+
+formula:
+"Opposite = height",
+
+question:
+"Which side represents the height?",
+
+answer:
+"Opposite."
+},
+
+{
+title: "Explore Tangent",
+subtitle: "Now connect the measurements.",
+
+explanation:
+"Tangent connects the opposite and adjacent sides, making it useful for this type of situation.",
+
+formula:
+"tan θ = Opposite / Adjacent",
+
+question:
+"Which ratio can connect height and ground distance?",
+
+answer:
+"Tangent."
+},
+
+{
+title: "Explore Another Situation",
+subtitle: "Trigonometry outside the classroom.",
+
+explanation:
+"The same idea can be used for trees, towers, ramps and other objects where direct measurement is difficult.",
+
+formula:
+"Trigonometry → indirect measurement",
+
+question:
+"What can trigonometry help us measure indirectly?",
+
+answer:
+"Heights and distances."
+}
+
+],
+
+
+"Explorer-Intermediate": [
+
+{
+title: "Explore a Tower",
+subtitle: "A practical measurement problem.",
+
+explanation:
+"You are standing 20 metres from a tower. The angle of elevation is 45°. How could you estimate the height?",
+
+formula:
+"tan θ = height / distance",
+
+question:
+"Which ratio should you use?",
+
+answer:
+"Tangent."
+},
+
+{
+title: "Explore the Relationship",
+subtitle: "Turn the situation into mathematics.",
+
+explanation:
+"The tower height is opposite the angle and the ground distance is adjacent.",
+
+formula:
+"tan 45° = height / 20",
+
+question:
+"What is the opposite side?",
+
+answer:
+"The tower height."
+},
+
+{
+title: "Find the Height",
+subtitle: "Complete the exploration.",
+
+explanation:
+"Since tan 45° = 1, the height equals the horizontal distance.",
+
+formula:
+"height = 20 × 1",
+
+question:
+"What is the tower height?",
+
+answer:
+"20 metres."
+},
+
+{
+title: "Apply the Idea",
+subtitle: "Where else can this work?",
+
+explanation:
+"The same method can estimate heights of trees, poles, buildings and other objects.",
+
+formula:
+"Angle + distance → height",
+
+question:
+"What makes this method useful?",
+
+answer:
+"It avoids directly measuring the height."
+}
+
+],
+
+
+"Explorer-Advanced": [
+
+{
+title: "Explore a Real Survey",
+subtitle: "Solve an indirect measurement.",
+
+explanation:
+"A surveyor measures 30 metres from a tower and observes an angle of elevation of 60°. The goal is to estimate the tower height.",
+
+formula:
+"tan 60° = height / 30",
+
+question:
+"Which ratio connects the measurements?",
+
+answer:
+"Tangent."
+},
+
+{
+title: "Build the Mathematical Model",
+subtitle: "Convert reality into a triangle.",
+
+explanation:
+"The ground distance becomes the adjacent side and the tower becomes the opposite side.",
+
+formula:
+"tan θ = opposite / adjacent",
+
+question:
+"Which side represents the tower?",
+
+answer:
+"Opposite."
+},
+
+{
+title: "Calculate the Height",
+subtitle: "Complete the real-world calculation.",
+
+explanation:
+"Using tan 60° ≈ 1.732 and distance 30 metres, the estimated height is approximately 51.96 metres.",
+
+formula:
+"height = 30 × 1.732",
+
+question:
+"What is the approximate height?",
+
+answer:
+"51.96 metres."
+},
+
+{
+title: "Explore the Limitation",
+subtitle: "Real-world mathematics needs assumptions.",
+
+explanation:
+"The calculation assumes the ground distance is measured correctly and the angle is accurate. Real measurements can contain errors.",
+
+formula:
+"Model + measurements → estimate",
+
+question:
+"Why is the result called an estimate?",
+
+answer:
+"Because real measurements can contain errors."
+}
+
+]
+
+};
+
+
+/* =========================
+   SELECT LESSON
+========================= */
+
+const key =
+learningStyle + "-" + learningLevel;
+
+let lessons =
+lessonLibrary[key];
+
+
+/* FALLBACK */
+
+if (!lessons) {
+
+    lessons =
+    lessonLibrary["Visualizer-Beginner"];
+
+}
+
+
+/* =========================
+   LESSON STATE
+========================= */
+
+let currentLesson = 0;
+
+let points = 10;
+
+
+/* =========================
+   LOAD LESSON
+========================= */
+
+function loadLesson() {
+
+    const lesson =
+    lessons[currentLesson];
+
+    document.getElementById("lessonNumber").textContent =
+    "LESSON " + (currentLesson + 1);
+
+    document.getElementById("progressText").textContent =
+    (currentLesson + 1) + " / " + lessons.length;
+
+    document.getElementById("progressBar").style.width =
+    ((currentLesson + 1) / lessons.length * 100) + "%";
+
+    document.getElementById("lessonTitle").textContent =
+    lesson.title;
+
+    document.getElementById("lessonSubtitle").textContent =
+    lesson.subtitle;
+
+    document.getElementById("lessonExplanation").textContent =
+    lesson.explanation;
+
+    document.getElementById("formula").textContent =
+    lesson.formula;
+
+    document.getElementById("exampleQuestion").textContent =
+    lesson.question;
+
+    document.getElementById("exampleAnswer").textContent =
+    "Answer: " + lesson.answer;
+
+    document.getElementById("points").textContent =
+    points;
+
+    if (currentLesson === lessons.length - 1) {
+
+        document.getElementById("nextButton").textContent =
+        "Complete Lesson ✓";
+
+    }
+
+}
+
+
+/* =========================
+   NEXT
+========================= */
+
+function nextLesson() {
+
+    stopSpeech();
+
+    points += 20;
+
+    if (currentLesson < lessons.length - 1) {
+
+        currentLesson++;
+
+        loadLesson();
+
+    }
+
+    else {
+
+        completeLesson();
+
+    }
+
+}
+
+
+/* =========================
+   COMPLETE
+========================= */
+
+function completeLesson() {
+
+    document.getElementById("lessonCard").style.display =
+    "none";
+
+    document.getElementById("completeCard").style.display =
+    "block";
+
+    document.getElementById("finalPoints").textContent =
+    points;
+
+}
+
+
+/* =========================
+   VOICE
+========================= */
+
+function speakLesson() {
+
+    if (!("speechSynthesis" in window)) {
+
+        alert("Voice is not supported in this browser.");
+
+        return;
+
+    }
+
+    stopSpeech();
+
+    const lesson =
+    lessons[currentLesson];
+
+    const text =
+    lesson.title +
+    ". " +
+    lesson.subtitle +
+    ". " +
+    lesson.explanation +
+    ". " +
+    lesson.formula +
+    ". " +
+    lesson.question +
+    ". " +
+    lesson.answer;
+
+    const speech =
+    new SpeechSynthesisUtterance(text);
+
+    speech.lang = "en-IN";
+
+    speech.rate = 0.9;
+
+    speech.pitch = 1;
+
+    window.speechSynthesis.speak(speech);
+
+}
+
+
+function stopSpeech() {
+
+    if ("speechSynthesis" in window) {
+
+        window.speechSynthesis.cancel();
+
+    }
+
+}
+
+
+/* =========================
+   AI TUTOR
+========================= */
+
+function continueToTutor() {
+
+    window.location.href =
+    "tutor.html";
+
+}
+
+
+loadLesson();
+
+</script>
+
+</body>
+
+</html>

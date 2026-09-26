@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Choose Topic | LearnIQ</title>
+
+    <link rel="stylesheet" href="../style.css">
+
+</head>
+
+
+<body>
+
+<main class="topic-page">
+
+
+    <!-- HEADER -->
+
+    <div class="page-header">
+
+        <div class="logo">
+
+            <span class="logo-icon">✦</span>
+
+            <span>LearnIQ</span>
+
+        </div>
+
+
+        <div class="step-indicator">
+
+            3 of 5
+
+        </div>
+
+    </div>
+
+
+
+    <!-- MAIN CONTENT -->
+
+    <section class="topic-content">
+
+
+        <div class="welcome-badge">
+
+            📚 Let's begin
+
+        </div>
+
+
+        <h1>
+
+            What do you want<br>
+
+            <span>to learn today?</span>
+
+        </h1>
+
+
+        <p class="section-description">
+
+            We'll first understand what you already know,
+            then adapt the lesson to your level.
+
+        </p>
+
+
+
+        <!-- SUBJECT BOX -->
+
+        <div class="subject-box">
+
+
+            <label>
+
+                Subject
+
+            </label>
+
+
+            <div class="subject-card selected">
+
+
+                <span class="subject-icon">
+
+                    📐
+
+                </span>
+
+
+                <div>
+
+                    <h2>
+
+                        Mathematics
+
+                    </h2>
+
+
+                    <p>
+
+                        Numbers, equations & problem solving
+
+                    </p>
+
+                </div>
+
+
+                <span class="subject-check">
+
+                    ✓
+
+                </span>
+
+
+            </div>
+
+
+
+            <!-- TOPIC -->
+
+            <label class="topic-label">
+
+                Topic
+
+            </label>
+
+
+            <select id="topic">
+
+
+                <option value="Trigonometry">
+
+                    Trigonometry
+
+                </option>
+
+
+            </select>
+
+
+
+            <!-- BUTTON -->
+
+            <button
+                class="primary-btn"
+                onclick="startQuiz()"
+            >
+
+                Start Diagnostic Quiz →
+
+            </button>
+
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+
+<script>
+
+function startQuiz() {
+
+    const topic =
+        document.getElementById("topic").value;
+
+
+    localStorage.setItem(
+        "selectedTopic",
+        topic
+    );
+
+
+    window.location.href =
+        "quiz.html";
+
+}
+
+</script>
+
+
+</body>
+
+</html>

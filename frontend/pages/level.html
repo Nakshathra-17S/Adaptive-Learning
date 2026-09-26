@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Your Learning Level | LearnIQ</title>
+
+    <link rel="stylesheet" href="../style.css">
+
+</head>
+
+
+<body>
+
+<main class="level-page">
+
+
+    <div class="page-header">
+
+        <div class="logo">
+
+            <span class="logo-icon">✦</span>
+
+            <span>LearnIQ</span>
+
+        </div>
+
+        <div class="step-indicator">
+
+            5 of 5
+
+        </div>
+
+    </div>
+
+
+
+    <section class="level-content">
+
+
+        <div class="welcome-badge">
+
+            ✨ Your learning path is ready
+
+        </div>
+
+
+        <h1>
+
+            We found your<br>
+
+            <span>starting point.</span>
+
+        </h1>
+
+
+        <div class="level-card">
+
+
+            <div class="level-icon">
+
+                🧭
+
+            </div>
+
+
+            <p class="level-small">
+
+                YOUR CURRENT LEVEL
+
+            </p>
+
+
+            <h2 id="levelText">
+
+                Beginner
+
+            </h2>
+
+
+            <p id="scoreText">
+
+                Score: 0%
+
+            </p>
+
+
+            <div class="level-description"
+                 id="levelDescription">
+
+            </div>
+
+
+        </div>
+
+
+        <button
+            class="primary-btn"
+            onclick="startLearning()"
+        >
+
+            Start My Learning Journey →
+
+        </button>
+
+
+    </section>
+
+
+</main>
+
+
+
+<script>
+
+const level =
+    localStorage.getItem("learningLevel") || "Beginner";
+
+
+const score =
+    localStorage.getItem("diagnosticScore") || 0;
+
+
+document.getElementById("levelText").textContent =
+    level;
+
+
+document.getElementById("scoreText").textContent =
+    "Diagnostic score: " + score + "%";
+
+
+const descriptions = {
+
+    Beginner:
+        "We'll build your understanding from the basics and move forward step by step.",
+
+    Intermediate:
+        "You already have a foundation. We'll quickly revise the basics and focus on stronger understanding.",
+
+    Advanced:
+        "You have a strong foundation. We'll focus on challenging applications and deeper problem solving."
+
+};
+
+
+document.getElementById("levelDescription").textContent =
+    descriptions[level];
+
+
+function startLearning() {
+
+    window.location.href = "learn.html";
+
+}
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnIQ - Feedback</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body class="feedback-page">
+
+    <div class="feedback-container">
+
+        <div class="feedback-intro">
+            <div class="feedback-icon">💬</div>
+            <h1>Help Us Improve Your Learning</h1>
+            <p>
+                Your feedback helps LearnIQ understand what works best
+                for you and personalize your future learning sessions.
+            </p>
+        </div>
+
+        <div class="feedback-card">
+
+            <h2>How was your learning experience?</h2>
+
+            <div class="rating-container">
+
+                <button class="rating" onclick="selectRating(1)">
+                    <span>😕</span>
+                    <small>Not Great</small>
+                </button>
+
+                <button class="rating" onclick="selectRating(2)">
+                    <span>🙂</span>
+                    <small>Okay</small>
+                </button>
+
+                <button class="rating" onclick="selectRating(3)">
+                    <span>😊</span>
+                    <small>Good</small>
+                </button>
+
+                <button class="rating" onclick="selectRating(4)">
+                    <span>😄</span>
+                    <small>Great</small>
+                </button>
+
+                <button class="rating" onclick="selectRating(5)">
+                    <span>🤩</span>
+                    <small>Amazing</small>
+                </button>
+
+            </div>
+
+            <label for="feedbackText">Tell us more</label>
+
+            <textarea
+                id="feedbackText"
+                placeholder="What did you like? What can we improve?"
+                rows="5"></textarea>
+
+            <p id="feedbackError" class="feedback-error"></p>
+
+            <button class="feedback-submit" onclick="submitFeedback()">
+                Submit Feedback
+            </button>
+
+        </div>
+
+        <div id="thankYouSection" class="thank-you-section">
+
+            <div class="thank-you-icon">🎉</div>
+
+            <h2>Thank You!</h2>
+
+            <p>
+                Your feedback has been recorded.
+                LearnIQ will use it to improve your future learning experience.
+            </p>
+
+            <button onclick="goToHome()" class="feedback-next-button">
+                Back to Home
+            </button>
+
+        </div>
+
+    </div>
+
+<script>
+
+let selectedRating = 0;
+
+function selectRating(rating) {
+
+    selectedRating = rating;
+
+    const buttons = document.querySelectorAll(".rating");
+
+    buttons.forEach(button => {
+        button.classList.remove("selected");
+    });
+
+    buttons[rating - 1].classList.add("selected");
+
+    document.getElementById("feedbackError").textContent = "";
+}
+
+
+function submitFeedback() {
+
+    const feedback = document.getElementById("feedbackText").value.trim();
+    const error = document.getElementById("feedbackError");
+
+    if (selectedRating === 0) {
+        error.textContent = "Please select a rating.";
+        return;
+    }
+
+    localStorage.setItem("feedbackRating", selectedRating);
+    localStorage.setItem("feedbackText", feedback);
+
+    document.querySelector(".feedback-card").style.display = "none";
+    document.getElementById("thankYouSection").style.display = "block";
+}
+
+
+function goToHome() {
+
+    localStorage.clear();
+
+    window.location.href = "../index.html";
+}
+
+</script>
+
+</body>
+</html>

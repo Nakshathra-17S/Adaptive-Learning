@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AI Tutor | LearnIQ</title>
+
+    <link rel="stylesheet" href="../style.css">
+
+</head>
+
+
+<body>
+
+<main class="tutor-page">
+
+
+    <!-- HEADER -->
+
+    <div class="page-header">
+
+        <div class="logo">
+
+            <span class="logo-icon">✦</span>
+
+            <span>LearnIQ</span>
+
+        </div>
+
+        <div class="step-indicator">
+
+            AI Tutor
+
+        </div>
+
+    </div>
+
+
+
+    <!-- TUTOR HEADER -->
+
+    <section class="tutor-header">
+
+        <div class="welcome-badge">
+
+            🤖 Your personal tutor
+
+        </div>
+
+
+        <h1>
+
+            Let's learn <span>together.</span>
+
+        </h1>
+
+
+        <p class="section-description">
+
+            Ask questions, clear your doubts, or explore
+            Trigonometry at your own pace.
+
+        </p>
+
+    </section>
+
+
+
+    <!-- LEARNING CONTENT -->
+
+    <section class="lesson-layout">
+
+
+        <!-- LEFT SIDE -->
+
+        <div class="lesson-card">
+
+
+            <div class="lesson-top">
+
+                <div>
+
+                    <p class="eyebrow">
+
+                        CURRENT LESSON
+
+                    </p>
+
+                    <h2>
+
+                        Introduction to Trigonometry
+
+                    </h2>
+
+                </div>
+
+
+                <span class="lesson-badge">
+
+                    <span id="levelBadge">
+
+                        Beginner
+
+                    </span>
+
+                </span>
+
+            </div>
+
+
+            <div class="lesson-progress">
+
+                <div class="lesson-progress-fill"></div>
+
+            </div>
+
+
+            <p class="lesson-progress-text">
+
+                Your lesson progress · 20%
+
+            </p>
+
+
+
+            <!-- CONCEPT -->
+
+            <div class="concept-box">
+
+                <h3>
+
+                    📐 What is Trigonometry?
+
+                </h3>
+
+
+                <p>
+
+                    Trigonometry is the study of the
+                    relationship between the angles and
+                    sides of triangles.
+
+                </p>
+
+
+                <div class="triangle-example">
+
+                    <div class="triangle">
+
+                        <span class="angle-label">
+
+                            θ
+
+                        </span>
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+
+                            Think about a right triangle
+
+                        </strong>
+
+                        <p>
+
+                            The relationships between its
+                            sides help us solve unknown
+                            distances and angles.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- KEY IDEAS -->
+
+            <div class="key-ideas">
+
+                <h3>
+
+                    Key ideas
+
+                </h3>
+
+
+                <div class="idea-grid">
+
+                    <div>
+
+                        <strong>
+
+                            sin θ
+
+                        </strong>
+
+                        <span>
+
+                            Opposite ÷ Hypotenuse
+
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+
+                            cos θ
+
+                        </strong>
+
+                        <span>
+
+                            Adjacent ÷ Hypotenuse
+
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+
+                            tan θ
+
+                        </strong>
+
+                        <span>
+
+                            Opposite ÷ Adjacent
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- RIGHT SIDE -->
+
+        <div class="chat-card">
+
+
+            <div class="chat-header">
+
+                <div class="tutor-avatar">
+
+                    ✦
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+
+                        LearnIQ Tutor
+
+                    </strong>
+
+                    <p>
+
+                        Ask me anything about this topic
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CHAT -->
+
+            <div
+                id="chatMessages"
+                class="chat-messages"
+            >
+
+                <div class="message tutor-message">
+
+                    Hi! 👋 I'm your LearnIQ tutor.
+
+                    <br><br>
+
+                    You can ask me anything about
+                    Trigonometry. For example:
+
+                    <br><br>
+
+                    <strong>
+
+                        "What is sin 30°?"
+
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- INPUT -->
+
+            <div class="chat-input-area">
+
+                <input
+                    type="text"
+                    id="chatInput"
+                    placeholder="Ask your doubt..."
+                    onkeydown="handleEnter(event)"
+                >
+
+
+                <button
+                    onclick="sendMessage()"
+                    class="send-button"
+                >
+
+                    ↑
+
+                </button>
+
+            </div>
+
+
+            <div class="voice-hint">
+
+                🎙️ Voice questions can be added with
+                the AI backend
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- FINISH -->
+
+    <button
+        class="primary-btn tutor-next-button"
+        onclick="finishLesson()"
+    >
+
+        Continue to Quick Quiz →
+
+    </button>
+
+
+</main>
+
+
+
+<script>
+
+
+/* =========================
+   LOAD LEVEL
+========================= */
+
+
+const level =
+    localStorage.getItem("learningLevel") || "Beginner";
+
+
+document.getElementById("levelBadge").textContent =
+    level;
+
+
+
+/* =========================
+   CHAT
+========================= */
+
+
+function sendMessage() {
+
+    const input =
+        document.getElementById("chatInput");
+
+
+    const message =
+        input.value.trim();
+
+
+    if (message === "") {
+
+        return;
+
+    }
+
+
+    addMessage(
+        message,
+        "student-message"
+    );
+
+
+    input.value = "";
+
+
+    setTimeout(function() {
+
+        let reply;
+
+
+        if (
+            message.toLowerCase()
+                .includes("sin")
+        ) {
+
+            reply =
+                "Sin θ represents the ratio of the opposite side to the hypotenuse in a right triangle.";
+
+        }
+
+        else if (
+            message.toLowerCase()
+                .includes("cos")
+        ) {
+
+            reply =
+                "Cos θ represents the ratio of the adjacent side to the hypotenuse.";
+
+        }
+
+        else if (
+            message.toLowerCase()
+                .includes("tan")
+        ) {
+
+            reply =
+                "Tan θ represents the ratio of the opposite side to the adjacent side.";
+
+        }
+
+        else {
+
+            reply =
+                "That's a great question! In the full version, I'll use AI to explain it step by step based on your learning level.";
+
+        }
+
+
+        addMessage(
+            reply,
+            "tutor-message"
+        );
+
+
+    }, 600);
+
+}
+
+
+
+function addMessage(text, className) {
+
+    const messages =
+        document.getElementById("chatMessages");
+
+
+    const messageDiv =
+        document.createElement("div");
+
+
+    messageDiv.className =
+        "message " + className;
+
+
+    messageDiv.textContent =
+        text;
+
+
+    messages.appendChild(messageDiv);
+
+
+    messages.scrollTop =
+        messages.scrollHeight;
+
+}
+
+
+
+function handleEnter(event) {
+
+    if (event.key === "Enter") {
+
+        sendMessage();
+
+    }
+
+}
+
+
+
+/* =========================
+   NEXT PAGE
+========================= */
+
+
+function finishLesson() {
+
+    window.location.href =
+        "final-quiz.html";
+
+}
+
+</script>
+
+
+</body>
+
+</html>
