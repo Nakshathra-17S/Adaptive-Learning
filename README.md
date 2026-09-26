@@ -1,4 +1,5 @@
 # LearnIQ – Adaptive Learning Platform
+🌐 Live Demo:  https://learniq-nrwt.onrender.com
 
 > **Learning should adapt to the student, not the other way around.**
 
